@@ -13,6 +13,10 @@
 		615B1C992941A8B6006BBE81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 615B1C972941A8B6006BBE81 /* Main.storyboard */; };
 		615B1C9B2941A8B7006BBE81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 615B1C9A2941A8B7006BBE81 /* Assets.xcassets */; };
 		615B1C9E2941A8B7006BBE81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 615B1C9C2941A8B7006BBE81 /* LaunchScreen.storyboard */; };
+		615B1CAB2941AAB5006BBE81 /* ContactInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CAA2941AAB5006BBE81 /* ContactInfo.swift */; };
+		615B1CAE2941ABFA006BBE81 /* ContactListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CAD2941ABFA006BBE81 /* ContactListTVC.swift */; };
+		615B1CB02941B342006BBE81 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CAF2941B342006BBE81 /* Constants.swift */; };
+		615B1CB22941B705006BBE81 /* ContactInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CB12941B705006BBE81 /* ContactInfoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		615B1C9A2941A8B7006BBE81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		615B1C9D2941A8B7006BBE81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		615B1C9F2941A8B7006BBE81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		615B1CAA2941AAB5006BBE81 /* ContactInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfo.swift; sourceTree = "<group>"; };
+		615B1CAD2941ABFA006BBE81 /* ContactListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListTVC.swift; sourceTree = "<group>"; };
+		615B1CAF2941B342006BBE81 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		615B1CB12941B705006BBE81 /* ContactInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,67 @@
 		615B1C902941A8B6006BBE81 /* ContactApp */ = {
 			isa = PBXGroup;
 			children = (
+				615B1CAC2941AAFF006BBE81 /* Utils */,
+				615B1CA92941AA2A006BBE81 /* Model */,
+				615B1CA52941A9DC006BBE81 /* Controller */,
 				615B1C912941A8B6006BBE81 /* AppDelegate.swift */,
 				615B1C932941A8B6006BBE81 /* SceneDelegate.swift */,
-				615B1C952941A8B6006BBE81 /* ViewController.swift */,
 				615B1C972941A8B6006BBE81 /* Main.storyboard */,
 				615B1C9A2941A8B7006BBE81 /* Assets.xcassets */,
 				615B1C9C2941A8B7006BBE81 /* LaunchScreen.storyboard */,
 				615B1C9F2941A8B7006BBE81 /* Info.plist */,
 			);
 			path = ContactApp;
+			sourceTree = "<group>";
+		};
+		615B1CA52941A9DC006BBE81 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				615B1CA72941AA04006BBE81 /* TableView */,
+				615B1CA62941A9ED006BBE81 /* Main */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		615B1CA62941A9ED006BBE81 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				615B1C952941A8B6006BBE81 /* ViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		615B1CA72941AA04006BBE81 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				615B1CA82941AA15006BBE81 /* Cell */,
+				615B1CAD2941ABFA006BBE81 /* ContactListTVC.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		615B1CA82941AA15006BBE81 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				615B1CB12941B705006BBE81 /* ContactInfoCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		615B1CA92941AA2A006BBE81 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				615B1CAA2941AAB5006BBE81 /* ContactInfo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		615B1CAC2941AAFF006BBE81 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				615B1CAF2941B342006BBE81 /* Constants.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +198,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				615B1CAB2941AAB5006BBE81 /* ContactInfo.swift in Sources */,
+				615B1CB22941B705006BBE81 /* ContactInfoCell.swift in Sources */,
 				615B1C962941A8B6006BBE81 /* ViewController.swift in Sources */,
 				615B1C922941A8B6006BBE81 /* AppDelegate.swift in Sources */,
+				615B1CAE2941ABFA006BBE81 /* ContactListTVC.swift in Sources */,
 				615B1C942941A8B6006BBE81 /* SceneDelegate.swift in Sources */,
+				615B1CB02941B342006BBE81 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +349,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 634W865UK3;
@@ -313,6 +378,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 634W865UK3;

@@ -17,6 +17,10 @@
 		615B1CAE2941ABFA006BBE81 /* ContactListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CAD2941ABFA006BBE81 /* ContactListTVC.swift */; };
 		615B1CB02941B342006BBE81 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CAF2941B342006BBE81 /* Constants.swift */; };
 		615B1CB22941B705006BBE81 /* ContactInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CB12941B705006BBE81 /* ContactInfoCell.swift */; };
+		615B1CB4294336EB006BBE81 /* IndividualContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CB3294336EB006BBE81 /* IndividualContactVC.swift */; };
+		615B1CB7294708BE006BBE81 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CB6294708BE006BBE81 /* UIView+Ext.swift */; };
+		615B1CB9294717A7006BBE81 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CB8294717A7006BBE81 /* UIColor+Ext.swift */; };
+		615B1CBB29472FF3006BBE81 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CBA29472FF3006BBE81 /* UILabel+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		615B1CAD2941ABFA006BBE81 /* ContactListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListTVC.swift; sourceTree = "<group>"; };
 		615B1CAF2941B342006BBE81 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		615B1CB12941B705006BBE81 /* ContactInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoCell.swift; sourceTree = "<group>"; };
+		615B1CB3294336EB006BBE81 /* IndividualContactVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualContactVC.swift; sourceTree = "<group>"; };
+		615B1CB6294708BE006BBE81 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		615B1CB8294717A7006BBE81 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		615B1CBA29472FF3006BBE81 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +72,7 @@
 		615B1C902941A8B6006BBE81 /* ContactApp */ = {
 			isa = PBXGroup;
 			children = (
-				615B1CAC2941AAFF006BBE81 /* Utils */,
+				615B1CAC2941AAFF006BBE81 /* Utils-Extension */,
 				615B1CA92941AA2A006BBE81 /* Model */,
 				615B1CA52941A9DC006BBE81 /* Controller */,
 				615B1C912941A8B6006BBE81 /* AppDelegate.swift */,
@@ -80,6 +88,7 @@
 		615B1CA52941A9DC006BBE81 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				615B1CB5294336F0006BBE81 /* IndividualContact */,
 				615B1CA72941AA04006BBE81 /* TableView */,
 				615B1CA62941A9ED006BBE81 /* Main */,
 			);
@@ -119,12 +128,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		615B1CAC2941AAFF006BBE81 /* Utils */ = {
+		615B1CAC2941AAFF006BBE81 /* Utils-Extension */ = {
 			isa = PBXGroup;
 			children = (
 				615B1CAF2941B342006BBE81 /* Constants.swift */,
+				615B1CB6294708BE006BBE81 /* UIView+Ext.swift */,
+				615B1CB8294717A7006BBE81 /* UIColor+Ext.swift */,
+				615B1CBA29472FF3006BBE81 /* UILabel+Ext.swift */,
 			);
-			path = Utils;
+			path = "Utils-Extension";
+			sourceTree = "<group>";
+		};
+		615B1CB5294336F0006BBE81 /* IndividualContact */ = {
+			isa = PBXGroup;
+			children = (
+				615B1CB3294336EB006BBE81 /* IndividualContactVC.swift */,
+			);
+			path = IndividualContact;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,10 +219,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				615B1CAB2941AAB5006BBE81 /* ContactInfo.swift in Sources */,
+				615B1CBB29472FF3006BBE81 /* UILabel+Ext.swift in Sources */,
 				615B1CB22941B705006BBE81 /* ContactInfoCell.swift in Sources */,
+				615B1CB4294336EB006BBE81 /* IndividualContactVC.swift in Sources */,
 				615B1C962941A8B6006BBE81 /* ViewController.swift in Sources */,
 				615B1C922941A8B6006BBE81 /* AppDelegate.swift in Sources */,
+				615B1CB7294708BE006BBE81 /* UIView+Ext.swift in Sources */,
 				615B1CAE2941ABFA006BBE81 /* ContactListTVC.swift in Sources */,
+				615B1CB9294717A7006BBE81 /* UIColor+Ext.swift in Sources */,
 				615B1C942941A8B6006BBE81 /* SceneDelegate.swift in Sources */,
 				615B1CB02941B342006BBE81 /* Constants.swift in Sources */,
 			);

@@ -81,7 +81,6 @@ class ContactInfoCell: UITableViewCell {
         contactNameLabel.setContentHuggingPriority(UILayoutPriority(251), for: .horizontal)
         
         NSLayoutConstraint.activate([
-//            contactNameLabel.firstBaselineAnchor.constraint(equalTo: contactImageView.firstBaselineAnchor, constant: 20),
             contactNameLabel.leadingAnchor.constraint(equalTo: contactImageView.trailingAnchor, constant: 40.0),
             contactNameLabel.trailingAnchor.constraint(equalTo: callButton.leadingAnchor, constant: 40),
             contactNameLabel.heightAnchor.constraint(equalToConstant: 40),
@@ -105,7 +104,6 @@ class ContactInfoCell: UITableViewCell {
         NSLayoutConstraint.activate([
             callButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             callButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-//            callButton.leadingAnchor.constraint(equalTo: contactNameLabel.trailingAnchor),
             callButton.widthAnchor.constraint(equalToConstant: 40),
             callButton.heightAnchor.constraint(equalTo: callButton.widthAnchor)
         ])

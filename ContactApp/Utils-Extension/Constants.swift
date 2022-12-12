@@ -11,4 +11,5 @@ import UIKit
 struct Images {
     static let callButton = UIImage(named: "callButton")
     static let dummyContactImage = UIImage(named: "dummyContactImage")
+    static let addLabel = UIImage(named: "addLabel")
 }

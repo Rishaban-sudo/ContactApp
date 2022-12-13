@@ -14,7 +14,6 @@ class ContactListTVC: UITableViewController {
         let button = UIButton()
         
         button.setBackgroundImage(Images.addLabel, for: .normal)
-//        button.backgroundColor = .systemBlue
 
         return button
     } ()
@@ -107,7 +106,11 @@ extension ContactListTVC {
         let individualContactVC = IndividualContactVC()
         let contactInfo = contactInfoList[indexPath.row]
         
-        individualContactVC.setValues(contactImage: contactInfo.contactImage, contactName: contactInfo.contactName, contactNumber: contactInfo.contactNumber)
+        individualContactVC.setValues(contactImage: contactInfo.contactImage,
+                                      contactName: contactInfo.contactName,
+                                      contactNumber: contactInfo.contactNumber,
+                                      email: contactInfo.email,
+                                      dateOfBirth: contactInfo.dateOfBirth)
         
         self.navigationController?.pushViewController(individualContactVC, animated: true)
     }
@@ -121,7 +124,9 @@ extension ContactListTVC {
         for i in 1...30 {
             contactInfoList.append(ContactInfo(contactImage: Images.dummyContactImage,
                                                contactName: "Person \(i)",
-                                               contactNumber: "+91 8870961690"))
+                                               contactNumber: "+91 8870961690",
+                                               email: "rishaban.ss@zohocorp.com",
+                                               dateOfBirth: "05/08/2000"))
         }
         return contactInfoList
     }

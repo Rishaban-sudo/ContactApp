@@ -23,8 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let contactListTVC = ContactListTVC()
         let navController = UINavigationController(rootViewController: contactListTVC)
 //        navController.navigationBar.prefersLargeTitles = true
-        navController.navigationBar.backgroundColor = .systemBlue
-        navController.navigationBar.barTintColor = .systemBlue
+        navController.navigationBar.backgroundColor = UIColor.getUIColorFromHex(rgbValue: 0x39A0FF)
+        navController.navigationBar.barTintColor = UIColor.getUIColorFromHex(rgbValue: 0x39A0FF)
         navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
         navController.view.addSubview(contactListTVC.getAddButton())

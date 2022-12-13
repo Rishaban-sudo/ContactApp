@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 extension UILabel {
-    public func setDefaultConfigurations(withFontSize size: CGFloat) {
+    public func setDefaultConfigurations(withFontSize size: CGFloat, adjustsFontSizeToFitWidth: Bool = false) {
         self.numberOfLines = 0
-        self.adjustsFontSizeToFitWidth = true
+        self.adjustsFontSizeToFitWidth = adjustsFontSizeToFitWidth
         self.font = self.font.withSize(size)
     }
 }

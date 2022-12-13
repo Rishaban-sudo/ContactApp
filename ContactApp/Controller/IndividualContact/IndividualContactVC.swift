@@ -35,16 +35,23 @@ class IndividualContactVC: UIViewController {
     private let dateOfBirthValueLabel: UILabel = UILabel()
     
     private let contactInfoView: UIView = UIView()
-    private let contactInfoContainer: UILayoutGuide = UILayoutGuide()
     
     
-    private let notesContainer: UILayoutGuide = UILayoutGuide()
+    private let notesLabel: UILabel = UILabel()
+    private let notesLabelValue: UILabel = UILabel()
+    
+    private let notesView: UIView = UIView()
     
     
     private var margins: UILayoutGuide!
     
     
-    public func setValues(contactImage: UIImage, contactName: String, contactNumber: String) {
+    public func setValues(contactImage: UIImage,
+                          contactName: String,
+                          contactNumber: String,
+                          email: String,
+                          dateOfBirth: String) {
+        
         contactImageView.image     = contactImage
         contactNameLabel.text      = contactName
         contactNumberlabel.text    = contactNumber
@@ -52,15 +59,19 @@ class IndividualContactVC: UIViewController {
         
         mobileValueLabel.text      = contactNumber
         nameValueLabel.text        = contactName
-        //to add email and dob to model class and to get from table cell
-        emailValueLabel.text       = "rishaban.ss@zohocorp.com"
-        dateOfBirthValueLabel.text = "05/08/2000"
+        
+        emailValueLabel.text       = email
+        dateOfBirthValueLabel.text = dateOfBirth
+        
     }
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Delete", style: .plain, target: self, action: nil),
+                                              UIBarButtonItem(title: "Edit", style: .plain, target: self, action: nil)]
         
         margins = view.layoutMarginsGuide
         view.backgroundColor = .white
@@ -74,7 +85,7 @@ class IndividualContactVC: UIViewController {
         view.addLayoutGuide(imgContainer)
         
         view.addSubview(contactInfoView)
-        contactInfoView.addSubview(contactInfoLabel) //
+        contactInfoView.addSubview(contactInfoLabel)
         
         contactInfoView.addSubview(mobileLabel)
         contactInfoView.addSubview(mobileValueLabel)
@@ -87,6 +98,11 @@ class IndividualContactVC: UIViewController {
         
         contactInfoView.addSubview(dateOfBirthLabel)
         contactInfoView.addSubview(dateOfBirthValueLabel)
+        
+        view.addSubview(notesView)
+        
+        notesView.addSubview(notesLabel)
+        notesView.addSubview(notesLabelValue)
         
         
         configureContactImageView()
@@ -117,7 +133,14 @@ class IndividualContactVC: UIViewController {
         setDateOfBirthLabelConstraints()
         setDateOfBirthValueLabelConstraints()
         
-//        setContactInfoContainerConstraints()
+
+        
+        configureNotesView()
+        
+        setNotesViewConstraints()
+        
+        setNotesLabelConstraints()
+        setNotesLabelValueConstraints()
     }
     
     
@@ -127,43 +150,47 @@ class IndividualContactVC: UIViewController {
     }
     
     private func configureLabels() {
-        contactNameLabel.numberOfLines = 0
-        contactNameLabel.adjustsFontSizeToFitWidth = true
-        contactNameLabel.font = contactNameLabel.font.withSize(18)
+        contactNameLabel.setDefaultConfigurations(withFontSize: 18, adjustsFontSizeToFitWidth: true)
         contactNameLabel.textAlignment = .center
         
-        contactNumberlabel.numberOfLines = 0
-        contactNumberlabel.adjustsFontSizeToFitWidth = true
-        contactNumberlabel.font = contactNumberlabel.font.withSize(18)
+        contactNumberlabel.setDefaultConfigurations(withFontSize: 18, adjustsFontSizeToFitWidth: true)
         contactNumberlabel.textAlignment = .center
         
         
-        contactInfoLabel.setDefaultConfigurations(withFontSize: 16)
+        contactInfoLabel.setDefaultConfigurations(withFontSize: 16, adjustsFontSizeToFitWidth: true)
+        contactInfoLabel.font =  UIFont.boldSystemFont(ofSize: 16)
         contactInfoLabel.text = "Contact Info"
         
-        mobileLabel.setDefaultConfigurations(withFontSize: 15)
+        mobileLabel.setDefaultConfigurations(withFontSize: 15, adjustsFontSizeToFitWidth: true)
         mobileLabel.text = "Mobile"
         
-        mobileValueLabel.setDefaultConfigurations(withFontSize: 15)
+        mobileValueLabel.setDefaultConfigurations(withFontSize: 15, adjustsFontSizeToFitWidth: true)
         
-        nameLabel.setDefaultConfigurations(withFontSize: 15)
+        nameLabel.setDefaultConfigurations(withFontSize: 15, adjustsFontSizeToFitWidth: true)
         nameLabel.text = "Name"
         
-        nameValueLabel.setDefaultConfigurations(withFontSize: 15)
+        nameValueLabel.setDefaultConfigurations(withFontSize: 15, adjustsFontSizeToFitWidth: true)
         
-        emailLabel.setDefaultConfigurations(withFontSize: 15)
+        emailLabel.setDefaultConfigurations(withFontSize: 15, adjustsFontSizeToFitWidth: true)
         emailLabel.text = "Email"
         
-        emailValueLabel.setDefaultConfigurations(withFontSize: 15)
+        emailValueLabel.setDefaultConfigurations(withFontSize: 15, adjustsFontSizeToFitWidth: true)
         
-        dateOfBirthLabel.setDefaultConfigurations(withFontSize: 15)
+        dateOfBirthLabel.setDefaultConfigurations(withFontSize: 15, adjustsFontSizeToFitWidth: true)
         dateOfBirthLabel.text = "Date of Birth"
         
-        dateOfBirthValueLabel.setDefaultConfigurations(withFontSize: 15)
+        dateOfBirthValueLabel.setDefaultConfigurations(withFontSize: 15, adjustsFontSizeToFitWidth: true)
+        
+        notesLabel.setDefaultConfigurations(withFontSize: 16, adjustsFontSizeToFitWidth: true)
+        notesLabel.font =  UIFont.boldSystemFont(ofSize: 16)
+        notesLabel.text = "Notes"
+        
+        notesLabelValue.setDefaultConfigurations(withFontSize: 15, adjustsFontSizeToFitWidth: false)
+        notesLabelValue.text = "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint jdbdhvwdhvbdk,.cd.dvfs avahc dolor do amet sint jdbdhvwdhvbdk,.cd.dvfs klwcjbdvsghcvjkfldkg fbd slosiougfcutgjklgfcdgxcfvjkl sdyvbksfjhgv "
     }
     
     private func configureCallButton() {
-        callButton.backgroundColor = .systemGreen
+        callButton.backgroundColor = UIColor.getUIColorFromHex(rgbValue: 0x00AB00)
         callButton.setTitle("Call", for: .normal)
         callButton.setTitleColor(.white, for: .normal)
         callButton.setTitleColor(.lightGray, for: .highlighted)
@@ -243,8 +270,6 @@ class IndividualContactVC: UIViewController {
             contactInfoView.widthAnchor.constraint(equalToConstant: 330),
             contactInfoView.heightAnchor.constraint(equalToConstant: 258),
             contactInfoView.centerXAnchor.constraint(equalTo: imgContainer.centerXAnchor),
-//            contactInfoView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 10),
-//            contactInfoView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -10),
             contactInfoView.topAnchor.constraint(equalTo: horizontalSeparator.bottomAnchor, constant: 20)
         ])
     }
@@ -274,7 +299,7 @@ class IndividualContactVC: UIViewController {
     private func setMobileValueLabel() {
         mobileValueLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            mobileValueLabel.topAnchor.constraint(equalTo: contactInfoView.topAnchor, constant: 60),
+            mobileValueLabel.firstBaselineAnchor.constraint(equalTo: mobileLabel.firstBaselineAnchor),
             mobileValueLabel.widthAnchor.constraint(equalToConstant: 168),
             mobileValueLabel.trailingAnchor.constraint(equalTo: contactInfoView.trailingAnchor, constant: -20)
         ])
@@ -336,5 +361,46 @@ class IndividualContactVC: UIViewController {
             dateOfBirthValueLabel.bottomAnchor.constraint(equalTo: contactInfoView.bottomAnchor, constant: -22)
         ])
     }
+    
+    
+    
+    
+    
+    
+    private func configureNotesView() {
+        notesView.backgroundColor = UIColor.getUIColorFromHex(rgbValue: 0xf3f9ff, alpha: 1)
+        notesView.layer.cornerRadius = 7
+    }
+    
+    private func setNotesViewConstraints() {
+        notesView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            notesView.widthAnchor.constraint(equalToConstant: 330),
+//            notesView.heightAnchor.constraint(equalToConstant: 120),
+            notesView.centerXAnchor.constraint(equalTo: imgContainer.centerXAnchor),
+            notesView.topAnchor.constraint(equalTo: contactInfoView.bottomAnchor, constant: 12)
+        ])
+    }
+    
+    private func setNotesLabelConstraints() {
+        notesLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            notesLabel.widthAnchor.constraint(equalToConstant: 42),
+            notesLabel.heightAnchor.constraint(equalToConstant: 20),
+            notesLabel.leadingAnchor.constraint(equalTo: notesView.leadingAnchor, constant: 20),
+            notesLabel.topAnchor.constraint(equalTo: notesView.topAnchor, constant: 20)
+        ])
+    }
+    
+    private func setNotesLabelValueConstraints() {
+        notesLabelValue.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            notesLabelValue.leadingAnchor.constraint(equalTo: notesLabel.leadingAnchor),
+            notesLabelValue.topAnchor.constraint(equalTo: notesLabel.bottomAnchor, constant: 10),
+            notesLabelValue.widthAnchor.constraint(equalToConstant: 290),
+            notesLabelValue.bottomAnchor.constraint(equalTo: notesView.bottomAnchor, constant: -32)
+        ])
+    }
+    
     
 }

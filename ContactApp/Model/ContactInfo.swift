@@ -10,8 +10,10 @@ import UIKit
 
 struct ContactInfo {
     var contactImage: UIImage!
+    
     var contactName: String
     var contactNumber: String
     var email: String
     var dateOfBirth: String
+    var notes: String
 }

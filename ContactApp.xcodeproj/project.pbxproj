@@ -17,10 +17,20 @@
 		615B1CAE2941ABFA006BBE81 /* ContactListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CAD2941ABFA006BBE81 /* ContactListTVC.swift */; };
 		615B1CB02941B342006BBE81 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CAF2941B342006BBE81 /* Constants.swift */; };
 		615B1CB22941B705006BBE81 /* ContactInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CB12941B705006BBE81 /* ContactInfoCell.swift */; };
-		615B1CB4294336EB006BBE81 /* IndividualContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CB3294336EB006BBE81 /* IndividualContactVC.swift */; };
 		615B1CB7294708BE006BBE81 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CB6294708BE006BBE81 /* UIView+Ext.swift */; };
 		615B1CB9294717A7006BBE81 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CB8294717A7006BBE81 /* UIColor+Ext.swift */; };
 		615B1CBB29472FF3006BBE81 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CBA29472FF3006BBE81 /* UILabel+Ext.swift */; };
+		615B1CBD294865DA006BBE81 /* IndividualContactTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CBC294865DA006BBE81 /* IndividualContactTVC.swift */; };
+		615B1CBF2948667D006BBE81 /* ImgContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CBE2948667D006BBE81 /* ImgContainerCell.swift */; };
+		615B1CC2294866B8006BBE81 /* ContactInfoContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CC1294866B8006BBE81 /* ContactInfoContainerCell.swift */; };
+		615B1CC529486735006BBE81 /* NotesContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CC429486735006BBE81 /* NotesContainerCell.swift */; };
+		615B1CC929489897006BBE81 /* ContactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1CC829489897006BBE81 /* ContactsDataSource.swift */; };
+		616502F52948D9B400E3EA20 /* CreateAndEditContactTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616502F42948D9B400E3EA20 /* CreateAndEditContactTVC.swift */; };
+		616502F82948DB5400E3EA20 /* CreateContactImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616502F72948DB5400E3EA20 /* CreateContactImgCell.swift */; };
+		616502FA2948E18400E3EA20 /* LabelAndTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616502F92948E18400E3EA20 /* LabelAndTextFieldCell.swift */; };
+		616502FC2948E56F00E3EA20 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616502FB2948E56F00E3EA20 /* UITextField+Ext.swift */; };
+		616503002949AB1F00E3EA20 /* NotesTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616502FF2949AB1F00E3EA20 /* NotesTextViewCell.swift */; };
+		61650302294A011500E3EA20 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61650301294A011500E3EA20 /* UIViewController+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,10 +46,20 @@
 		615B1CAD2941ABFA006BBE81 /* ContactListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListTVC.swift; sourceTree = "<group>"; };
 		615B1CAF2941B342006BBE81 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		615B1CB12941B705006BBE81 /* ContactInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoCell.swift; sourceTree = "<group>"; };
-		615B1CB3294336EB006BBE81 /* IndividualContactVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualContactVC.swift; sourceTree = "<group>"; };
 		615B1CB6294708BE006BBE81 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		615B1CB8294717A7006BBE81 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		615B1CBA29472FF3006BBE81 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
+		615B1CBC294865DA006BBE81 /* IndividualContactTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualContactTVC.swift; sourceTree = "<group>"; };
+		615B1CBE2948667D006BBE81 /* ImgContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgContainerCell.swift; sourceTree = "<group>"; };
+		615B1CC1294866B8006BBE81 /* ContactInfoContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoContainerCell.swift; sourceTree = "<group>"; };
+		615B1CC429486735006BBE81 /* NotesContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesContainerCell.swift; sourceTree = "<group>"; };
+		615B1CC829489897006BBE81 /* ContactsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsDataSource.swift; sourceTree = "<group>"; };
+		616502F42948D9B400E3EA20 /* CreateAndEditContactTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAndEditContactTVC.swift; sourceTree = "<group>"; };
+		616502F72948DB5400E3EA20 /* CreateContactImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContactImgCell.swift; sourceTree = "<group>"; };
+		616502F92948E18400E3EA20 /* LabelAndTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAndTextFieldCell.swift; sourceTree = "<group>"; };
+		616502FB2948E56F00E3EA20 /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
+		616502FF2949AB1F00E3EA20 /* NotesTextViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTextViewCell.swift; sourceTree = "<group>"; };
+		61650301294A011500E3EA20 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +92,7 @@
 		615B1C902941A8B6006BBE81 /* ContactApp */ = {
 			isa = PBXGroup;
 			children = (
+				615B1CC72948983F006BBE81 /* DataSource */,
 				615B1CAC2941AAFF006BBE81 /* Utils-Extension */,
 				615B1CA92941AA2A006BBE81 /* Model */,
 				615B1CA52941A9DC006BBE81 /* Controller */,
@@ -88,7 +109,6 @@
 		615B1CA52941A9DC006BBE81 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				615B1CB5294336F0006BBE81 /* IndividualContact */,
 				615B1CA72941AA04006BBE81 /* TableView */,
 				615B1CA62941A9ED006BBE81 /* Main */,
 			);
@@ -106,8 +126,10 @@
 		615B1CA72941AA04006BBE81 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				616502FE2948EE6100E3EA20 /* IndividualGroup */,
+				616502FD2948EE3600E3EA20 /* ContactList */,
+				615B1CCA2948B4DC006BBE81 /* CreateAndEditContact */,
 				615B1CA82941AA15006BBE81 /* Cell */,
-				615B1CAD2941ABFA006BBE81 /* ContactListTVC.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -115,7 +137,9 @@
 		615B1CA82941AA15006BBE81 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				615B1CB12941B705006BBE81 /* ContactInfoCell.swift */,
+				616502F62948DACF00E3EA20 /* CreateContact */,
+				615B1CC629488081006BBE81 /* ContactInfo */,
+				615B1CC029486685006BBE81 /* IndividualContact */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -135,16 +159,70 @@
 				615B1CB6294708BE006BBE81 /* UIView+Ext.swift */,
 				615B1CB8294717A7006BBE81 /* UIColor+Ext.swift */,
 				615B1CBA29472FF3006BBE81 /* UILabel+Ext.swift */,
+				616502FB2948E56F00E3EA20 /* UITextField+Ext.swift */,
+				61650301294A011500E3EA20 /* UIViewController+Ext.swift */,
 			);
 			path = "Utils-Extension";
 			sourceTree = "<group>";
 		};
-		615B1CB5294336F0006BBE81 /* IndividualContact */ = {
+		615B1CC029486685006BBE81 /* IndividualContact */ = {
 			isa = PBXGroup;
 			children = (
-				615B1CB3294336EB006BBE81 /* IndividualContactVC.swift */,
+				615B1CBE2948667D006BBE81 /* ImgContainerCell.swift */,
+				615B1CC1294866B8006BBE81 /* ContactInfoContainerCell.swift */,
+				615B1CC429486735006BBE81 /* NotesContainerCell.swift */,
 			);
 			path = IndividualContact;
+			sourceTree = "<group>";
+		};
+		615B1CC629488081006BBE81 /* ContactInfo */ = {
+			isa = PBXGroup;
+			children = (
+				615B1CB12941B705006BBE81 /* ContactInfoCell.swift */,
+			);
+			path = ContactInfo;
+			sourceTree = "<group>";
+		};
+		615B1CC72948983F006BBE81 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				615B1CC829489897006BBE81 /* ContactsDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		615B1CCA2948B4DC006BBE81 /* CreateAndEditContact */ = {
+			isa = PBXGroup;
+			children = (
+				616502F42948D9B400E3EA20 /* CreateAndEditContactTVC.swift */,
+			);
+			path = CreateAndEditContact;
+			sourceTree = "<group>";
+		};
+		616502F62948DACF00E3EA20 /* CreateContact */ = {
+			isa = PBXGroup;
+			children = (
+				616502F72948DB5400E3EA20 /* CreateContactImgCell.swift */,
+				616502F92948E18400E3EA20 /* LabelAndTextFieldCell.swift */,
+				616502FF2949AB1F00E3EA20 /* NotesTextViewCell.swift */,
+			);
+			path = CreateContact;
+			sourceTree = "<group>";
+		};
+		616502FD2948EE3600E3EA20 /* ContactList */ = {
+			isa = PBXGroup;
+			children = (
+				615B1CAD2941ABFA006BBE81 /* ContactListTVC.swift */,
+			);
+			path = ContactList;
+			sourceTree = "<group>";
+		};
+		616502FE2948EE6100E3EA20 /* IndividualGroup */ = {
+			isa = PBXGroup;
+			children = (
+				615B1CBC294865DA006BBE81 /* IndividualContactTVC.swift */,
+			);
+			path = IndividualGroup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,15 +298,25 @@
 			files = (
 				615B1CAB2941AAB5006BBE81 /* ContactInfo.swift in Sources */,
 				615B1CBB29472FF3006BBE81 /* UILabel+Ext.swift in Sources */,
+				61650302294A011500E3EA20 /* UIViewController+Ext.swift in Sources */,
 				615B1CB22941B705006BBE81 /* ContactInfoCell.swift in Sources */,
-				615B1CB4294336EB006BBE81 /* IndividualContactVC.swift in Sources */,
+				616503002949AB1F00E3EA20 /* NotesTextViewCell.swift in Sources */,
+				615B1CBF2948667D006BBE81 /* ImgContainerCell.swift in Sources */,
+				616502FA2948E18400E3EA20 /* LabelAndTextFieldCell.swift in Sources */,
 				615B1C962941A8B6006BBE81 /* ViewController.swift in Sources */,
+				615B1CC529486735006BBE81 /* NotesContainerCell.swift in Sources */,
 				615B1C922941A8B6006BBE81 /* AppDelegate.swift in Sources */,
 				615B1CB7294708BE006BBE81 /* UIView+Ext.swift in Sources */,
+				615B1CC2294866B8006BBE81 /* ContactInfoContainerCell.swift in Sources */,
+				616502FC2948E56F00E3EA20 /* UITextField+Ext.swift in Sources */,
+				616502F82948DB5400E3EA20 /* CreateContactImgCell.swift in Sources */,
 				615B1CAE2941ABFA006BBE81 /* ContactListTVC.swift in Sources */,
 				615B1CB9294717A7006BBE81 /* UIColor+Ext.swift in Sources */,
 				615B1C942941A8B6006BBE81 /* SceneDelegate.swift in Sources */,
 				615B1CB02941B342006BBE81 /* Constants.swift in Sources */,
+				615B1CBD294865DA006BBE81 /* IndividualContactTVC.swift in Sources */,
+				616502F52948D9B400E3EA20 /* CreateAndEditContactTVC.swift in Sources */,
+				615B1CC929489897006BBE81 /* ContactsDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,8 +470,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -411,8 +499,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

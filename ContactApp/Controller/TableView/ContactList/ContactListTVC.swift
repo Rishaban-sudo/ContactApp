@@ -9,7 +9,7 @@ import UIKit
 
 class ContactListTVC: UITableViewController {
 
-    private var contactInfoList: [ContactInfo] = []
+    
     private let addButton: UIButton = {
         let button = UIButton()
         
@@ -28,10 +28,11 @@ class ContactListTVC: UITableViewController {
         super.viewDidLoad()
         
         title = "My Contacts"
+
         setAddButtonConstrainsts()
         configureAddButton()
         configureTableView()
-        contactInfoList.append(contentsOf: populateDummyData())
+        ContactsDataSource.populateDummyData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +46,7 @@ class ContactListTVC: UITableViewController {
     
     private func configureTableView() {
         setTableViewDelegates()
+        tableView.insetsContentViewsToSafeArea = true
         tableView.rowHeight = ContactInfoCell.cellHeight
         tableView.separatorStyle = .none
         tableView.register(ContactInfoCell.self, forCellReuseIdentifier: ContactInfoCell.cellIdentifier)
@@ -59,6 +61,7 @@ class ContactListTVC: UITableViewController {
         addButton.layer.cornerRadius = 64 / 2
         addButton.clipsToBounds = true
         addButton.layer.masksToBounds = true
+        addButton.addTarget(self, action: #selector(onButtonTap), for: .touchUpInside)
     }
     
     private func setAddButtonConstrainsts() {
@@ -77,14 +80,14 @@ extension ContactListTVC {
     
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contactInfoList.count
+        return ContactsDataSource.getTotalContacts()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ContactInfoCell.cellIdentifier, for: indexPath) as! ContactInfoCell
         
-        let contactInfo = contactInfoList[indexPath.row]
+        let contactInfo = ContactsDataSource.getContactInfo(at: indexPath.row)
         
         cell.set(contactImage: contactInfo.contactImage,
                  contactNameLabel: contactInfo.contactName,
@@ -103,32 +106,33 @@ extension ContactListTVC {
             flag = false
         }
         
-        let individualContactVC = IndividualContactVC()
-        let contactInfo = contactInfoList[indexPath.row]
+        let individualContactTVC = IndividualContactTVC()
+        let contactInfo = ContactsDataSource.getContactInfo(at: indexPath.row)
         
-        individualContactVC.setValues(contactImage: contactInfo.contactImage,
-                                      contactName: contactInfo.contactName,
-                                      contactNumber: contactInfo.contactNumber,
-                                      email: contactInfo.email,
-                                      dateOfBirth: contactInfo.dateOfBirth)
+        individualContactTVC.setValues(contactImage: contactInfo.contactImage,
+                                       contactName: contactInfo.contactName,
+                                       contactNumber: contactInfo.contactNumber,
+                                       email: contactInfo.email,
+                                       dateOfBirth: contactInfo.dateOfBirth,
+                                       notes: contactInfo.notes)
         
-        self.navigationController?.pushViewController(individualContactVC, animated: true)
+        self.navigationController?.pushViewController(individualContactTVC, animated: true)
     }
     
 }
 
 extension ContactListTVC {
     
-    func populateDummyData() -> [ContactInfo] {
-        var contactInfoList: [ContactInfo] = []
-        for i in 1...30 {
-            contactInfoList.append(ContactInfo(contactImage: Images.dummyContactImage,
-                                               contactName: "Person \(i)",
-                                               contactNumber: "+91 8870961690",
-                                               email: "rishaban.ss@zohocorp.com",
-                                               dateOfBirth: "05/08/2000"))
+    @objc private func onButtonTap() {
+        
+        if flag {
+            addButton.removeFromSuperview()
+            flag = false
         }
-        return contactInfoList
+        
+        
+        let createContactTVC = CreateAndEditContactTVC()
+        self.navigationController?.pushViewController(createContactTVC, animated: true)
     }
     
 }

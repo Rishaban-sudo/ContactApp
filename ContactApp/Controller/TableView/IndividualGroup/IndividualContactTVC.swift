@@ -18,12 +18,14 @@ class IndividualContactTVC: UITableViewController {
     private var dateOfBirth: String!
     private var notes: String!
     
+    private var index: Int!
+    
     public func setValues(contactImage: UIImage,
                           contactName: String,
                           contactNumber: String,
                           email: String,
                           dateOfBirth: String,
-                          notes: String) {
+                          notes: String, index: Int) {
         
         self.contactImage = contactImage
         self.contactName = contactName
@@ -31,14 +33,19 @@ class IndividualContactTVC: UITableViewController {
         self.email = email
         self.dateOfBirth = dateOfBirth
         self.notes = notes
+        self.index = index
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        overrideUserInterfaceStyle = .light
+        
         navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Delete", style: .plain, target: self, action: nil),
-                                              UIBarButtonItem(title: "Edit", style: .plain, target: self, action: nil)]
+                                              UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(onEditButtonTap))]
+        
+        
         
         configureTableView()
     }
@@ -61,6 +68,25 @@ class IndividualContactTVC: UITableViewController {
 
 }
 
+extension IndividualContactTVC {
+    
+    @objc private func onEditButtonTap() {
+        
+        let createAndEditContactTVC = CreateAndEditContactTVC()
+
+        createAndEditContactTVC.setValues(firstName: ContactInfo.getFirstName(from: contactName),
+                                          lastName: ContactInfo.getLastName(from: contactName),
+                                          email: email,
+                                          phoneNumber: contactNumber,
+                                          dateOfBirth: dateOfBirth,
+                                          notes: notes,
+                                          index: index)
+
+        self.navigationController?.pushViewController(createAndEditContactTVC, animated: true)
+    }
+    
+}
+
 
 extension IndividualContactTVC {
     
@@ -73,12 +99,12 @@ extension IndividualContactTVC {
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: ImgContainerCell.cellIdentifier, for: indexPath) as! ImgContainerCell
-            cell.setCellContext(contactImage: contactImage, contactName: contactName, contactNumber: contactNumber)
+            cell.setCellContext(contactImage: contactImage, contactName: ContactInfo.displayContactNameAsFullName(contactName: contactName), contactNumber: contactNumber)
             cell.isUserInteractionEnabled = true
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: ContactInfoContainerCell.cellIdentifier, for: indexPath) as! ContactInfoContainerCell
-            cell.setCellContext(mobileNo: contactNumber, name: contactName, email: email, dateOfBirth: dateOfBirth)
+            cell.setCellContext(mobileNo: contactNumber, name: ContactInfo.displayContactNameAsFullName(contactName: contactName), email: email, dateOfBirth: dateOfBirth)
             cell.isUserInteractionEnabled = false
             return cell
         case 2:

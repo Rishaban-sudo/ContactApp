@@ -112,11 +112,11 @@ class ContactInfoContainerCell: UITableViewCell {
     private func setContactInfoViewConstraints() {
         contactInfoView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            contactInfoView.widthAnchor.constraint(equalToConstant: 330),
-            contactInfoView.heightAnchor.constraint(equalToConstant: 258),
-//            contactInfoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-//            contactInfoView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
-            contactInfoView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+//            contactInfoView.widthAnchor.constraint(equalToConstant: 330),
+//            contactInfoView.heightAnchor.constraint(equalToConstant: 258),
+            contactInfoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            contactInfoView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+//            contactInfoView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             contactInfoView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             contactInfoView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
@@ -129,7 +129,7 @@ class ContactInfoContainerCell: UITableViewCell {
             contactInfoLabel.heightAnchor.constraint(equalToConstant: 20),
             contactInfoLabel.topAnchor.constraint(equalTo: contactInfoView.topAnchor, constant: 20),
             contactInfoLabel.leadingAnchor.constraint(equalTo: contactInfoView.leadingAnchor, constant: 20),
-            contactInfoLabel.trailingAnchor.constraint(equalTo: contactInfoView.trailingAnchor, constant: -221)
+//            contactInfoLabel.trailingAnchor.constraint(equalTo: contactInfoView.trailingAnchor, constant: -221)
         ])
     }
     
@@ -148,7 +148,9 @@ class ContactInfoContainerCell: UITableViewCell {
         mobileValueLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             mobileValueLabel.firstBaselineAnchor.constraint(equalTo: mobileLabel.firstBaselineAnchor),
-            mobileValueLabel.widthAnchor.constraint(equalToConstant: 168),
+//            mobileValueLabel.leadingAnchor.constraint(equalTo: mobileLabel.leadingAnchor, constant: 77),
+//            mobileValueLabel.widthAnchor.constraint(equalToConstant: 168),
+            mobileValueLabel.heightAnchor.constraint(equalToConstant: 19),
             mobileValueLabel.trailingAnchor.constraint(equalTo: contactInfoView.trailingAnchor, constant: -20)
         ])
     }

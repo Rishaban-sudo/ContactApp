@@ -27,6 +27,8 @@ class ContactListTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        overrideUserInterfaceStyle = .light
+        
         title = "My Contacts"
 
         setAddButtonConstrainsts()
@@ -36,6 +38,7 @@ class ContactListTVC: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
         if (!flag) {
             flag = true
             self.navigationController?.view.addSubview(addButton)
@@ -65,8 +68,9 @@ class ContactListTVC: UITableViewController {
     }
     
     private func setAddButtonConstrainsts() {
+        guard let navigationController = self.navigationController else { return }
         addButton.translatesAutoresizingMaskIntoConstraints = false
-        addButton.bottomAnchor.constraint(equalTo:(self.navigationController?.view.bottomAnchor)!, constant: -30).isActive = true
+        addButton.bottomAnchor.constraint(equalTo:navigationController.view.bottomAnchor, constant: -30).isActive = true
         addButton.centerXAnchor.constraint(equalTo: (self.navigationController?.view.centerXAnchor)!).isActive = true
         addButton.widthAnchor.constraint(equalToConstant: 64).isActive = true
         addButton.heightAnchor.constraint(equalTo: addButton.widthAnchor).isActive = true
@@ -90,7 +94,7 @@ extension ContactListTVC {
         let contactInfo = ContactsDataSource.getContactInfo(at: indexPath.row)
         
         cell.set(contactImage: contactInfo.contactImage,
-                 contactNameLabel: contactInfo.contactName,
+                 contactNameLabel: ContactInfo.displayContactNameAsFullName(contactName: contactInfo.contactName),
                  contactNumberlabel: contactInfo.contactNumber)
         
         
@@ -114,7 +118,8 @@ extension ContactListTVC {
                                        contactNumber: contactInfo.contactNumber,
                                        email: contactInfo.email,
                                        dateOfBirth: contactInfo.dateOfBirth,
-                                       notes: contactInfo.notes)
+                                       notes: contactInfo.notes,
+                                       index: indexPath.row)
         
         self.navigationController?.pushViewController(individualContactTVC, animated: true)
     }
@@ -132,6 +137,7 @@ extension ContactListTVC {
         
         
         let createContactTVC = CreateAndEditContactTVC()
+        createContactTVC.configureAsCreateContactView()
         self.navigationController?.pushViewController(createContactTVC, animated: true)
     }
     

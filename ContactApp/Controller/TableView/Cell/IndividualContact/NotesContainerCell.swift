@@ -62,9 +62,9 @@ class NotesContainerCell: UITableViewCell {
     private func setNotesViewConstraints() {
         notesView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            notesView.widthAnchor.constraint(equalToConstant: 330),
-//            notesView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-//            notesView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+//            notesView.widthAnchor.constraint(equalToConstant: 330),
+            notesView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            notesView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
             notesView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             notesView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             notesView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
@@ -85,8 +85,9 @@ class NotesContainerCell: UITableViewCell {
         notesLabelValue.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             notesLabelValue.leadingAnchor.constraint(equalTo: notesLabel.leadingAnchor),
+            notesLabelValue.trailingAnchor.constraint(equalTo: notesView.trailingAnchor, constant: -20),
             notesLabelValue.topAnchor.constraint(equalTo: notesLabel.bottomAnchor, constant: 10),
-            notesLabelValue.widthAnchor.constraint(equalToConstant: 290),
+//            notesLabelValue.widthAnchor.constraint(equalToConstant: 290),
             notesLabelValue.bottomAnchor.constraint(equalTo: notesView.bottomAnchor, constant: -32)
         ])
     }

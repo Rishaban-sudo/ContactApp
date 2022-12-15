@@ -9,16 +9,16 @@ import Foundation
 import UIKit
 
 struct ContactsDataSource {
-    private static var datasource: [ContactInfo] = []
+    public static var datasource: [ContactInfo] = []
     
     public static func populateDummyData() {
         
         for i in 1...30 {
             datasource.append(ContactInfo(contactImage: Images.dummyContactImage,
-                                               contactName: "Person \(i)",
-                                               contactNumber: "+91 8870961690",
+                                               contactName: "Person \(i)_Z\(i)",
+                                               contactNumber: "8870961690",
                                                email: "rishaban.ss@zohocorp.com",
-                                               dateOfBirth: "05/08/2000",
+                                               dateOfBirth: "2000/08/20",
                                                notes: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint jdbdhvwdhvbdk,.cd.dvfs avahc dolor do amet sint jdbdhvwdhvbdk,.cd.dvfs klwcjbdvsghcvjkfldkg fbd slosiougfcutgjklgfcdgxcfvjkl sdyvbksfjhgv ")
                                    )
         }
@@ -35,5 +35,7 @@ struct ContactsDataSource {
     public static func addContactInfo(contact: ContactInfo) {
         datasource.append(contact)
     }
+    
+    
     
 }

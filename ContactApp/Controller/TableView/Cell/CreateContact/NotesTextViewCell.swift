@@ -38,6 +38,10 @@ class NotesTextViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func getNotesTextView() -> UITextView {
+        return notesTextView
+    }
+    
     private func configureNotesLabel() {
         notesLabel.setDefaultConfigurations(withFontSize: 15)
         notesLabel.font = UIFont.boldSystemFont(ofSize: 15)

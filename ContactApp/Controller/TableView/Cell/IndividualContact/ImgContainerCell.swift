@@ -98,7 +98,7 @@ class ImgContainerCell: UITableViewCell {
         NSLayoutConstraint.activate([
             contactNameLabel.topAnchor.constraint(equalTo: contactImageView.bottomAnchor, constant: 16),
             contactNameLabel.centerXAnchor.constraint(equalTo: contactImageView.centerXAnchor),
-            contactNameLabel.widthAnchor.constraint(equalToConstant: 135)
+//            contactNameLabel.widthAnchor.constraint(equalToConstant: 135)
         ])
     }
     

@@ -17,6 +17,7 @@ class CreateAndEditContactTVC: UITableViewController {
     private var dobTextField: UITextField?
     
     
+    private var contactImage: UIImage?
     private var firstName: String!
     private var lastName: String!
     private var email: String!
@@ -29,8 +30,17 @@ class CreateAndEditContactTVC: UITableViewController {
     private var isEditView: Bool = false
     
     
-    public func setValues(firstName: String, lastName: String, email: String, phoneNumber: String, dateOfBirth: String, notes: String, index: Int, isEditView: Bool = true)
+    public func setValues(contactImage: UIImage,
+                          firstName: String,
+                          lastName: String,
+                          email: String,
+                          phoneNumber: String,
+                          dateOfBirth: String,
+                          notes: String,
+                          index: Int,
+                          isEditView: Bool = true)
     {
+        self.contactImage = contactImage
         self.firstName = firstName
         self.lastName = lastName
         self.email = email
@@ -61,6 +71,7 @@ class CreateAndEditContactTVC: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if isEditView {
             title = "Edit"
         }
@@ -92,7 +103,7 @@ extension CreateAndEditContactTVC {
     @objc func onSaveButtonTapped() {
         
         if isEditView {
-            ContactsDataSource.datasource[index].contactImage = Images.dummyContactImage
+            ContactsDataSource.datasource[index].contactImage = self.contactImage ?? Images.dummyContactImage
             ContactsDataSource.datasource[index].contactName = ContactInfo.concatenateFirstNameAndLastNameToPersist(firstName: self.firstName, lastName: self.lastName)
             ContactsDataSource.datasource[index].contactNumber = self.phoneNumber
             ContactsDataSource.datasource[index].email = self.email
@@ -102,7 +113,7 @@ extension CreateAndEditContactTVC {
             self.navigationController?.popToRootViewController(animated: true)
         }
         else {
-            let contactInfo = ContactInfo(contactImage: Images.dummyContactImage,
+            let contactInfo = ContactInfo(contactImage: self.contactImage ?? Images.dummyContactImage,
                                           contactName: ContactInfo.concatenateFirstNameAndLastNameToPersist(firstName: self.firstName, lastName: self.lastName),
                                           contactNumber: self.phoneNumber,
                                           email: self.email,
@@ -178,11 +189,14 @@ extension CreateAndEditContactTVC {
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: CreateContactImgCell.cellIdentifier, for: indexPath) as! CreateContactImgCell
+            cell.setContactImage(contactImage: self.contactImage ?? Images.dummyContactImage)
+            cell.getContactImgButton().addTarget(self, action: #selector(uploadImage), for: .touchUpInside)
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: LabelAndTextFieldCell.cellIdentifier, for: indexPath) as! LabelAndTextFieldCell
             cell.getTextField().tag = indexPath.row
             cell.getTextField().addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+//            cell.getTextField().becomeFirstResponder()
             cell.setCellContext(withLabelText: "First Name")
             if (isEditView) {
                 cell.getTextField().text = firstName
@@ -288,4 +302,37 @@ extension CreateAndEditContactTVC: UITextViewDelegate {
             self.notes = cell.getNotesTextView().text
         }
     }
+}
+
+extension CreateAndEditContactTVC {
+    
+    @objc private func uploadImage() {
+        let uiImagePickerController = UIImagePickerController()
+        uiImagePickerController.sourceType = .photoLibrary
+        uiImagePickerController.delegate = self
+        uiImagePickerController.allowsEditing = true
+        self.present(uiImagePickerController, animated: true)
+    }
+
+}
+
+
+extension CreateAndEditContactTVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage else {
+            return
+        }
+        
+        self.contactImage = image
+        let createContactImgCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! CreateContactImgCell
+        createContactImgCell.getContactImgButton().setBackgroundImage(image, for: .normal)
+        
+        picker.dismiss(animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+    
 }

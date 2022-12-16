@@ -74,13 +74,14 @@ extension IndividualContactTVC {
         
         let createAndEditContactTVC = CreateAndEditContactTVC()
 
-        createAndEditContactTVC.setValues(firstName: ContactInfo.getFirstName(from: contactName),
-                                          lastName: ContactInfo.getLastName(from: contactName),
-                                          email: email,
-                                          phoneNumber: contactNumber,
-                                          dateOfBirth: dateOfBirth,
-                                          notes: notes,
-                                          index: index)
+        createAndEditContactTVC.setValues(contactImage: self.contactImage,
+                                          firstName: ContactInfo.getFirstName(from: self.contactName),
+                                          lastName: ContactInfo.getLastName(from: self.contactName),
+                                          email: self.email,
+                                          phoneNumber: self.contactNumber,
+                                          dateOfBirth: self.dateOfBirth,
+                                          notes: self.notes,
+                                          index: self.index)
 
         self.navigationController?.pushViewController(createAndEditContactTVC, animated: true)
     }
@@ -99,17 +100,17 @@ extension IndividualContactTVC {
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: ImgContainerCell.cellIdentifier, for: indexPath) as! ImgContainerCell
-            cell.setCellContext(contactImage: contactImage, contactName: ContactInfo.displayContactNameAsFullName(contactName: contactName), contactNumber: contactNumber)
+            cell.setCellContext(contactImage: self.contactImage, contactName: ContactInfo.displayContactNameAsFullName(contactName: self.contactName), contactNumber: self.contactNumber)
             cell.isUserInteractionEnabled = true
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: ContactInfoContainerCell.cellIdentifier, for: indexPath) as! ContactInfoContainerCell
-            cell.setCellContext(mobileNo: contactNumber, name: ContactInfo.displayContactNameAsFullName(contactName: contactName), email: email, dateOfBirth: dateOfBirth)
+            cell.setCellContext(mobileNo: self.contactNumber, name: ContactInfo.displayContactNameAsFullName(contactName: self.contactName), email: self.email, dateOfBirth: self.dateOfBirth)
             cell.isUserInteractionEnabled = false
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: NotesContainerCell.cellIdentifier, for: indexPath) as! NotesContainerCell
-            cell.setCellContext(notes: notes)
+            cell.setCellContext(notes: self.notes)
             cell.isUserInteractionEnabled = false
             return cell
         default:

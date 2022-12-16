@@ -11,7 +11,7 @@ class CreateContactImgCell: UITableViewCell {
 
     public static let cellIdentifier = "CreateContactImgCell"
     
-    private let contactImageView: UIImageView = UIImageView()
+    private let contactImageButton: UIButton = UIButton()
     private let containerView: UIView = UIView()
     
     
@@ -23,11 +23,11 @@ class CreateContactImgCell: UITableViewCell {
         
         contentView.addSubview(containerView)
         
-        containerView.addSubview(contactImageView)
+        containerView.addSubview(contactImageButton)
         
         configureContactImageView()
         
-        setContactImageViewConstraints()
+        setContactImageButtonConstraints()
         setContainerViewConstraints()
     }
     
@@ -37,22 +37,34 @@ class CreateContactImgCell: UITableViewCell {
     
     
     
-    private func configureContactImageView() {
-        contactImageView.image = Images.dummyContactImage
-        contactImageView.layer.cornerRadius = 100 / 2
-        contactImageView.clipsToBounds = true
+    public func setContactImage(contactImage: UIImage?) {
+        contactImageButton.setBackgroundImage(contactImage, for: .normal)
+    }
+    
+    
+    public func getContactImgButton() -> UIButton {
+        return contactImageButton
     }
     
     
     
-    private func setContactImageViewConstraints() {
-        contactImageView.translatesAutoresizingMaskIntoConstraints = false
+    
+    
+    private func configureContactImageView() {
+        contactImageButton.layer.cornerRadius = 100 / 2
+        contactImageButton.clipsToBounds = true
+    }
+    
+    
+    
+    private func setContactImageButtonConstraints() {
+        contactImageButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            contactImageView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            contactImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20),
-            contactImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -19),
-            contactImageView.widthAnchor.constraint(equalToConstant: 100),
-            contactImageView.heightAnchor.constraint(equalTo: contactImageView.widthAnchor)
+            contactImageButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            contactImageButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20),
+            contactImageButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -19),
+            contactImageButton.widthAnchor.constraint(equalToConstant: 100),
+            contactImageButton.heightAnchor.constraint(equalTo: contactImageButton.widthAnchor)
         ])
     }
     

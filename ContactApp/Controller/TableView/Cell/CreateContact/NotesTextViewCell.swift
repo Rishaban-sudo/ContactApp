@@ -50,8 +50,8 @@ class NotesTextViewCell: UITableViewCell {
     private func configureNotesTextView() {
         let borderColor: UIColor = UIColor.getUIColorFromHex(rgbValue: 0xececec)
         
-        notesTextView.delegate = self
         
+        notesTextView.font = UIFont.systemFont(ofSize: 15)
         notesTextView.layer.borderWidth = 0.5
         notesTextView.layer.borderColor = borderColor.cgColor
         notesTextView.layer.cornerRadius = 5.0
@@ -84,10 +84,4 @@ class NotesTextViewCell: UITableViewCell {
         containerView.pin(to: contentView)
     }
     
-}
-
-extension NotesTextViewCell: UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
-        
-    }
 }

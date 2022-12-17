@@ -32,6 +32,7 @@ class DeleteContactPopVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        overrideUserInterfaceStyle = .light
         view.backgroundColor = UIColor.getUIColorFromHex(rgbValue: 0x808080, alpha: 0.5)
         
         self.definesPresentationContext = true
@@ -133,7 +134,8 @@ class DeleteContactPopVC: UIViewController {
             deleteButton.widthAnchor.constraint(equalToConstant: 78),
             deleteButton.heightAnchor.constraint(equalToConstant: 27),
             deleteButton.topAnchor.constraint(equalTo: textLabel2.bottomAnchor, constant: 15),
-            deleteButton.trailingAnchor.constraint(equalTo: deleteIconImageView.centerXAnchor, constant: -14.5)
+            deleteButton.trailingAnchor.constraint(equalTo: deleteIconImageView.centerXAnchor, constant: -14.5),
+            deleteButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -14)
         ])
     }
     
@@ -143,7 +145,8 @@ class DeleteContactPopVC: UIViewController {
             cancelButton.widthAnchor.constraint(equalToConstant: 78),
             cancelButton.heightAnchor.constraint(equalToConstant: 27),
             cancelButton.topAnchor.constraint(equalTo: textLabel2.bottomAnchor, constant: 15),
-            cancelButton.leadingAnchor.constraint(equalTo: deleteIconImageView.centerXAnchor, constant: 14.5)
+            cancelButton.leadingAnchor.constraint(equalTo: deleteIconImageView.centerXAnchor, constant: 14.5),
+            cancelButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -14)
         ])
     }
     
@@ -152,7 +155,7 @@ class DeleteContactPopVC: UIViewController {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             containerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
-            containerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.20),
+//            containerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.20),
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])

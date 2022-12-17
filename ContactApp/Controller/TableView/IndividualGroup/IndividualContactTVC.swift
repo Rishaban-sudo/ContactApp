@@ -88,7 +88,7 @@ extension IndividualContactTVC {
     
     @objc private func onDeleteButtonTap() {
         let deleteContactPopVC = DeleteContactPopVC()
-//        deleteContactPopVC.getDeleteButton().addTarget(self, action: nil, for: .touchUpInside)
+        deleteContactPopVC.getDeleteButton().addTarget(self, action: #selector(deleteContact), for: .touchUpInside)
         
         deleteContactPopVC.modalPresentationStyle = .overCurrentContext
         deleteContactPopVC.modalTransitionStyle   = .crossDissolve
@@ -137,6 +137,8 @@ extension IndividualContactTVC {
 
 extension IndividualContactTVC {
     @objc private func deleteContact() {
-        
+        ContactsDataSource.deleteContactInfo(at: self.index)
+        dismiss(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }

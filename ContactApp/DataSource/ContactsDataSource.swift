@@ -45,4 +45,8 @@ struct ContactsDataSource {
         datasource[index].notes = contact.notes
     }
     
+    public static func deleteContactInfo(at index: Int) {
+        datasource.remove(at: index)
+    }
+    
 }

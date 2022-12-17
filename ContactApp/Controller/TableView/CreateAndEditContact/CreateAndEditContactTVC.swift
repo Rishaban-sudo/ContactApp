@@ -116,15 +116,26 @@ extension CreateAndEditContactTVC {
             self.navigationController?.popToRootViewController(animated: true)
         }
         else {
-            let contactInfo = ContactInfo(contactImage: self.contactImage ?? Images.dummyContactImage,
-                                          contactName: ContactInfo.concatenateFirstNameAndLastNameToPersist(firstName: self.firstName, lastName: self.lastName),
-                                          contactNumber: self.phoneNumber,
-                                          email: self.email,
-                                          dateOfBirth: self.dateOfBirth,
-                                          notes: self.notes)
             
-            ContactsDataSource.addContactInfo(contact: contactInfo)
-            self.navigationController?.popViewController(animated: true)
+            if self.contactImage != nil &&
+                self.firstName != nil &&
+                self.lastName != nil &&
+                self.phoneNumber != nil &&
+                self.email != nil &&
+                self.dateOfBirth != nil &&
+                self.notes != nil
+            {
+                let contactInfo = ContactInfo(contactImage: self.contactImage ?? Images.dummyContactImage,
+                                              contactName: ContactInfo.concatenateFirstNameAndLastNameToPersist(firstName: self.firstName, lastName: self.lastName),
+                                              contactNumber: self.phoneNumber,
+                                              email: self.email,
+                                              dateOfBirth: self.dateOfBirth,
+                                              notes: self.notes)
+                
+                ContactsDataSource.addContactInfo(contact: contactInfo)
+                self.navigationController?.popViewController(animated: true)
+            }
+            
         }
         
     }

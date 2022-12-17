@@ -12,4 +12,5 @@ struct Images {
     static let callButton = UIImage(named: "callButton")
     static let dummyContactImage = UIImage(named: "dummyContactImage")
     static let addLabel = UIImage(named: "addLabel")
+    static let dustbin = UIImage(named: "dustbin")
 }

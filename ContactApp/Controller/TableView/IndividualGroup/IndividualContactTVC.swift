@@ -42,7 +42,7 @@ class IndividualContactTVC: UITableViewController {
 
         overrideUserInterfaceStyle = .light
         
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Delete", style: .plain, target: self, action: nil),
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(onDeleteButtonTap)),
                                               UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(onEditButtonTap))]
         
         
@@ -86,6 +86,16 @@ extension IndividualContactTVC {
         self.navigationController?.pushViewController(createAndEditContactTVC, animated: true)
     }
     
+    @objc private func onDeleteButtonTap() {
+        let deleteContactPopVC = DeleteContactPopVC()
+//        deleteContactPopVC.getDeleteButton().addTarget(self, action: nil, for: .touchUpInside)
+        
+        deleteContactPopVC.modalPresentationStyle = .overCurrentContext
+        deleteContactPopVC.modalTransitionStyle   = .crossDissolve
+        
+        self.present(deleteContactPopVC, animated: true)
+    }
+    
 }
 
 
@@ -123,4 +133,10 @@ extension IndividualContactTVC {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+}
+
+extension IndividualContactTVC {
+    @objc private func deleteContact() {
+        
+    }
 }

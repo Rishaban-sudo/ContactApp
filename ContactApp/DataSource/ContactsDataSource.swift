@@ -36,6 +36,13 @@ struct ContactsDataSource {
         datasource.append(contact)
     }
     
-    
+    public static func editContactInfo(at index:Int , contact: ContactInfo) {
+        datasource[index].contactImage = contact.contactImage
+        datasource[index].contactName = contact.contactName
+        datasource[index].contactNumber = contact.contactNumber
+        datasource[index].email = contact.email
+        datasource[index].dateOfBirth = contact.dateOfBirth
+        datasource[index].notes = contact.notes
+    }
     
 }

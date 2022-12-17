@@ -31,6 +31,8 @@
 		616502FC2948E56F00E3EA20 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616502FB2948E56F00E3EA20 /* UITextField+Ext.swift */; };
 		616503002949AB1F00E3EA20 /* NotesTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616502FF2949AB1F00E3EA20 /* NotesTextViewCell.swift */; };
 		61650302294A011500E3EA20 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61650301294A011500E3EA20 /* UIViewController+Ext.swift */; };
+		61650304294C6ECE00E3EA20 /* LargeTileContactinfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61650303294C6ECE00E3EA20 /* LargeTileContactinfoCell.swift */; };
+		61650309294CB3A800E3EA20 /* DeleteContactPopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61650308294CB3A800E3EA20 /* DeleteContactPopVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		616502FB2948E56F00E3EA20 /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
 		616502FF2949AB1F00E3EA20 /* NotesTextViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTextViewCell.swift; sourceTree = "<group>"; };
 		61650301294A011500E3EA20 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		61650303294C6ECE00E3EA20 /* LargeTileContactinfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeTileContactinfoCell.swift; sourceTree = "<group>"; };
+		61650308294CB3A800E3EA20 /* DeleteContactPopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteContactPopVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 		615B1CA52941A9DC006BBE81 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				61650305294CB00300E3EA20 /* PopUpView */,
 				615B1CA72941AA04006BBE81 /* TableView */,
 				615B1CA62941A9ED006BBE81 /* Main */,
 			);
@@ -179,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				615B1CB12941B705006BBE81 /* ContactInfoCell.swift */,
+				61650303294C6ECE00E3EA20 /* LargeTileContactinfoCell.swift */,
 			);
 			path = ContactInfo;
 			sourceTree = "<group>";
@@ -223,6 +229,14 @@
 				615B1CBC294865DA006BBE81 /* IndividualContactTVC.swift */,
 			);
 			path = IndividualGroup;
+			sourceTree = "<group>";
+		};
+		61650305294CB00300E3EA20 /* PopUpView */ = {
+			isa = PBXGroup;
+			children = (
+				61650308294CB3A800E3EA20 /* DeleteContactPopVC.swift */,
+			);
+			path = PopUpView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				615B1CAB2941AAB5006BBE81 /* ContactInfo.swift in Sources */,
+				61650304294C6ECE00E3EA20 /* LargeTileContactinfoCell.swift in Sources */,
 				615B1CBB29472FF3006BBE81 /* UILabel+Ext.swift in Sources */,
 				61650302294A011500E3EA20 /* UIViewController+Ext.swift in Sources */,
 				615B1CB22941B705006BBE81 /* ContactInfoCell.swift in Sources */,
@@ -310,6 +325,7 @@
 				615B1CC2294866B8006BBE81 /* ContactInfoContainerCell.swift in Sources */,
 				616502FC2948E56F00E3EA20 /* UITextField+Ext.swift in Sources */,
 				616502F82948DB5400E3EA20 /* CreateContactImgCell.swift in Sources */,
+				61650309294CB3A800E3EA20 /* DeleteContactPopVC.swift in Sources */,
 				615B1CAE2941ABFA006BBE81 /* ContactListTVC.swift in Sources */,
 				615B1CB9294717A7006BBE81 /* UIColor+Ext.swift in Sources */,
 				615B1C942941A8B6006BBE81 /* SceneDelegate.swift in Sources */,

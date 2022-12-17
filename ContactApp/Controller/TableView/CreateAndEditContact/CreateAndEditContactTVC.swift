@@ -103,12 +103,15 @@ extension CreateAndEditContactTVC {
     @objc func onSaveButtonTapped() {
         
         if isEditView {
-            ContactsDataSource.datasource[index].contactImage = self.contactImage ?? Images.dummyContactImage
-            ContactsDataSource.datasource[index].contactName = ContactInfo.concatenateFirstNameAndLastNameToPersist(firstName: self.firstName, lastName: self.lastName)
-            ContactsDataSource.datasource[index].contactNumber = self.phoneNumber
-            ContactsDataSource.datasource[index].email = self.email
-            ContactsDataSource.datasource[index].dateOfBirth = self.dateOfBirth
-            ContactsDataSource.datasource[index].notes = self.notes
+            
+            let contactInfo =  ContactInfo(contactImage: self.contactImage ?? Images.dummyContactImage,
+                        contactName: ContactInfo.concatenateFirstNameAndLastNameToPersist(firstName: self.firstName, lastName: self.lastName),
+                        contactNumber: self.phoneNumber,
+                        email: self.email,
+                        dateOfBirth: self.dateOfBirth,
+                        notes: self.notes)
+            
+            ContactsDataSource.editContactInfo(at: self.index, contact: contactInfo)
             
             self.navigationController?.popToRootViewController(animated: true)
         }

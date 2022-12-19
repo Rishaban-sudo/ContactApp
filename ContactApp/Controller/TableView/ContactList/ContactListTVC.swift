@@ -148,6 +148,21 @@ extension ContactListTVC {
         self.navigationController?.pushViewController(individualContactTVC, animated: true)
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive,
+                                                title: "Delete",
+                                                handler: { (action, indexpath) in
+            ContactsDataSource.deleteContactInfo(at: indexpath.row)
+            tableView.deleteRows(at: [indexpath], with: .automatic)
+        })
+        
+        return [deleteAction]
+    }
+    
 }
 
 extension ContactListTVC {

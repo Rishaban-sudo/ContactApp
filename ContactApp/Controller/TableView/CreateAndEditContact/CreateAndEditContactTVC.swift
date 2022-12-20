@@ -117,7 +117,7 @@ extension CreateAndEditContactTVC {
         }
         else {
             
-            if self.contactImage != nil &&
+            if 
                 self.firstName != nil &&
                 self.lastName != nil &&
                 self.phoneNumber != nil &&

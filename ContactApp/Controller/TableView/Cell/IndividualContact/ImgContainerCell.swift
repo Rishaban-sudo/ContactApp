@@ -30,6 +30,15 @@ class ImgContainerCell: UITableViewCell {
     }
     
     
+    public func getContactImageView() -> UIImageView {
+        return contactImageView
+    }
+    
+    public func getCallButton() -> UIButton {
+        return callButton
+    }
+    
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -64,6 +73,8 @@ class ImgContainerCell: UITableViewCell {
     private func configureContactImageView() {
         contactImageView.layer.cornerRadius = 100 / 2
         contactImageView.clipsToBounds = true
+        
+        contactImageView.isUserInteractionEnabled = true
     }
     
     private func configureLabels() {

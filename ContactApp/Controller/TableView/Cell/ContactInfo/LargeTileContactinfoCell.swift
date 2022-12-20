@@ -74,6 +74,7 @@ class LargeTileContactinfoCell: UITableViewCell {
         callButton.setTitleColor(.white, for: .normal)
         callButton.setTitleColor(.lightGray, for: .highlighted)
         callButton.layer.cornerRadius = 5
+        callButton.addTarget(self, action: #selector(callNumber), for: .touchUpInside)
     }
     
     
@@ -124,4 +125,16 @@ class LargeTileContactinfoCell: UITableViewCell {
     }
     
     
+}
+
+extension LargeTileContactinfoCell {
+
+    @objc private func callNumber() {
+
+        guard let contactNo = self.contactNumberlabel.text else { return }
+
+        CallAPIWrapper.makePhoneCall(contactNumber: contactNo)
+
+    }
+
 }

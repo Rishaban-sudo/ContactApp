@@ -116,6 +116,8 @@ extension IndividualContactTVC {
             let cell = tableView.dequeueReusableCell(withIdentifier: ImgContainerCell.cellIdentifier, for: indexPath) as! ImgContainerCell
             cell.setCellContext(contactImage: self.contactImage, contactName: ContactInfo.displayContactNameAsFullName(contactName: self.contactName), contactNumber: self.contactNumber)
             cell.isUserInteractionEnabled = true
+            cell.getContactImageView().addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped)))
+            cell.getCallButton().addTarget(self, action: #selector(callNumber), for: .touchUpInside)
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: ContactInfoContainerCell.cellIdentifier, for: indexPath) as! ContactInfoContainerCell
@@ -145,4 +147,30 @@ extension IndividualContactTVC {
         dismiss(animated: true)
         self.navigationController?.popToRootViewController(animated: true)
     }
+}
+
+extension IndividualContactTVC {
+    
+    @objc private func imageTapped() {
+        let imagePreviewPopVC = ImagePreviewPopVC()
+        imagePreviewPopVC.setImagePreview(with: contactImage)
+        
+        imagePreviewPopVC.modalPresentationStyle = .overCurrentContext
+        imagePreviewPopVC.modalTransitionStyle   = .crossDissolve
+        
+        self.present(imagePreviewPopVC, animated: true)
+    }
+    
+}
+
+extension IndividualContactTVC {
+    
+    @objc private func callNumber() {
+
+        guard let contactNo = self.contactNumber else { return }
+
+        CallAPIWrapper.makePhoneCall(contactNumber: contactNo)
+
+    }
+    
 }

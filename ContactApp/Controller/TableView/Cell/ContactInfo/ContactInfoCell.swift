@@ -25,6 +25,10 @@ class ContactInfoCell: UITableViewCell {
     
     private let containerView: UIView = UIView()
     
+    public func getCallButton() -> UIButton {
+        return callButton
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -38,6 +42,7 @@ class ContactInfoCell: UITableViewCell {
         
         configureImageViews()
         configureLabels()
+        configureCallButton()
         
         setContainerViewConstraints()
         
@@ -70,6 +75,10 @@ class ContactInfoCell: UITableViewCell {
         contactNumberlabel.numberOfLines = 0
         contactNumberlabel.adjustsFontSizeToFitWidth = true
         contactNumberlabel.font = contactNumberlabel.font.withSize(18)
+    }
+    
+    private func configureCallButton() {
+        callButton.addTarget(self, action: #selector(callNumber), for: .touchUpInside)
     }
     
     
@@ -126,4 +135,14 @@ class ContactInfoCell: UITableViewCell {
         ])
     }
 
+}
+
+extension ContactInfoCell {
+    @objc private func callNumber() {
+        
+        guard let contactNo = self.contactNumberlabel.text else { return }
+        
+        CallAPIWrapper.makePhoneCall(contactNumber: contactNo)
+        
+    }
 }

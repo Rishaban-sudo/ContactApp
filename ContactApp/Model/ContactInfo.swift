@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 struct ContactInfo {
+    var recordId: String!
     var contactImage: UIImage!
     
     var contactName: String // of format first name_last name
@@ -16,6 +17,11 @@ struct ContactInfo {
     var email: String
     var dateOfBirth: String
     var notes: String
+    
+    mutating func setRecordId(_ recordId: String) {
+        self.recordId = recordId
+    }
+    
     
     public static func displayContactNameAsFullName(contactName: String) -> String {
         let fullNameArr = contactName.components(separatedBy: "_")

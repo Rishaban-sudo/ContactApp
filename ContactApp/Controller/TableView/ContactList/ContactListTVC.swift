@@ -40,7 +40,13 @@ class ContactListTVC: UITableViewController {
         setAddButtonConstrainsts()
         configureAddButton()
         configureTableView()
-        ContactsDataSource.populateDummyData()
+//        ContactsDataSource.populateDummyData()
+        
+        ContactsDataSource.contactsDataViewDelegate = self
+        
+        ContactsDataSource.fetchContactsFromZC() { () in
+            self.tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,7 +143,8 @@ extension ContactListTVC {
         let individualContactTVC = IndividualContactTVC()
         let contactInfo = ContactsDataSource.getContactInfo(at: indexPath.row)
         
-        individualContactTVC.setValues(contactImage: contactInfo.contactImage,
+        individualContactTVC.setValues(recordId: contactInfo.recordId , // as of since we will not be getting recordId for newly added record
+                                       contactImage: contactInfo.contactImage,
                                        contactName: contactInfo.contactName,
                                        contactNumber: contactInfo.contactNumber,
                                        email: contactInfo.email,
@@ -156,7 +163,8 @@ extension ContactListTVC {
         let deleteAction = UITableViewRowAction(style: .destructive,
                                                 title: "Delete",
                                                 handler: { (action, indexpath) in
-            ContactsDataSource.deleteContactInfo(at: indexpath.row)
+            let contactInfo = ContactsDataSource.getContactInfo(at: indexpath.row)
+            ContactsDataSource.deleteContactInfo(at: indexpath.row, recordId: contactInfo.recordId)
             tableView.deleteRows(at: [indexpath], with: .automatic)
         })
         
@@ -188,6 +196,14 @@ extension ContactListTVC {
             switchFlag = false
         }
         tableView.reloadData()
+    }
+    
+}
+
+extension ContactListTVC: ContactsDataViewDelegate {
+    
+    func refreshTableView() {
+        self.tableView.reloadData()
     }
     
 }

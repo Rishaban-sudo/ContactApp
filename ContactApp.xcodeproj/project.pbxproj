@@ -36,6 +36,10 @@
 		61650309294CB3A800E3EA20 /* DeleteContactPopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61650308294CB3A800E3EA20 /* DeleteContactPopVC.swift */; };
 		6165030D2950756B00E3EA20 /* ImagePreviewPopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6165030C2950756B00E3EA20 /* ImagePreviewPopVC.swift */; };
 		6165031029509DBE00E3EA20 /* CallAPIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6165030F29509DBE00E3EA20 /* CallAPIWrapper.swift */; };
+		6197742A2952D0490002E4C0 /* ZCAppInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 619774292952D0490002E4C0 /* ZCAppInfo.plist */; };
+		6197742D2952DACE0002E4C0 /* ZCAPIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6197742C2952DACE0002E4C0 /* ZCAPIWrapper.swift */; };
+		619774332953124A0002E4C0 /* ContactAppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619774322953124A0002E4C0 /* ContactAppConstants.swift */; };
+		61977436295437B20002E4C0 /* ContactInfoFormHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61977435295437B20002E4C0 /* ContactInfoFormHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +75,11 @@
 		61650308294CB3A800E3EA20 /* DeleteContactPopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteContactPopVC.swift; sourceTree = "<group>"; };
 		6165030C2950756B00E3EA20 /* ImagePreviewPopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewPopVC.swift; sourceTree = "<group>"; };
 		6165030F29509DBE00E3EA20 /* CallAPIWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallAPIWrapper.swift; sourceTree = "<group>"; };
+		61977426295217E60002E4C0 /* ContactApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ContactApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		619774292952D0490002E4C0 /* ZCAppInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ZCAppInfo.plist; sourceTree = "<group>"; };
+		6197742C2952DACE0002E4C0 /* ZCAPIWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZCAPIWrapper.swift; sourceTree = "<group>"; };
+		619774322953124A0002E4C0 /* ContactAppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAppConstants.swift; sourceTree = "<group>"; };
+		61977435295437B20002E4C0 /* ContactInfoFormHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoFormHandler.swift; sourceTree = "<group>"; };
 		8FDEA5258CD4AB17A6F3D5B7 /* Pods-ContactApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactApp.debug.xcconfig"; path = "Target Support Files/Pods-ContactApp/Pods-ContactApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +116,9 @@
 		615B1C902941A8B6006BBE81 /* ContactApp */ = {
 			isa = PBXGroup;
 			children = (
+				61977434295437700002E4C0 /* ZC Form Handler */,
+				6197742B2952DAAB0002E4C0 /* ZC Api Wrapper */,
+				619774252952177D0002E4C0 /* Supporting Files */,
 				6165030E29509D6100E3EA20 /* CallApiWrapper */,
 				615B1CC72948983F006BBE81 /* DataSource */,
 				615B1CAC2941AAFF006BBE81 /* Utils-Extension */,
@@ -172,6 +184,7 @@
 		615B1CAC2941AAFF006BBE81 /* Utils-Extension */ = {
 			isa = PBXGroup;
 			children = (
+				619774312953122A0002E4C0 /* Contact App Constants */,
 				615B1CAF2941B342006BBE81 /* Constants.swift */,
 				615B1CB6294708BE006BBE81 /* UIView+Ext.swift */,
 				615B1CB8294717A7006BBE81 /* UIColor+Ext.swift */,
@@ -260,6 +273,39 @@
 			path = CallApiWrapper;
 			sourceTree = "<group>";
 		};
+		619774252952177D0002E4C0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				61977426295217E60002E4C0 /* ContactApp-Bridging-Header.h */,
+				619774292952D0490002E4C0 /* ZCAppInfo.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6197742B2952DAAB0002E4C0 /* ZC Api Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				6197742C2952DACE0002E4C0 /* ZCAPIWrapper.swift */,
+			);
+			path = "ZC Api Wrapper";
+			sourceTree = "<group>";
+		};
+		619774312953122A0002E4C0 /* Contact App Constants */ = {
+			isa = PBXGroup;
+			children = (
+				619774322953124A0002E4C0 /* ContactAppConstants.swift */,
+			);
+			path = "Contact App Constants";
+			sourceTree = "<group>";
+		};
+		61977434295437700002E4C0 /* ZC Form Handler */ = {
+			isa = PBXGroup;
+			children = (
+				61977435295437B20002E4C0 /* ContactInfoFormHandler.swift */,
+			);
+			path = "ZC Form Handler";
+			sourceTree = "<group>";
+		};
 		B0102FDE9FB22BC159EF2B63 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,7 +320,6 @@
 				8FDEA5258CD4AB17A6F3D5B7 /* Pods-ContactApp.debug.xcconfig */,
 				4857860A943EFEF9E74328D4 /* Pods-ContactApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -341,6 +386,7 @@
 				615B1C9E2941A8B7006BBE81 /* LaunchScreen.storyboard in Resources */,
 				615B1C9B2941A8B7006BBE81 /* Assets.xcassets in Resources */,
 				615B1C992941A8B6006BBE81 /* Main.storyboard in Resources */,
+				6197742A2952D0490002E4C0 /* ZCAppInfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,9 +444,11 @@
 				615B1CBB29472FF3006BBE81 /* UILabel+Ext.swift in Sources */,
 				61650302294A011500E3EA20 /* UIViewController+Ext.swift in Sources */,
 				615B1CB22941B705006BBE81 /* ContactInfoCell.swift in Sources */,
+				619774332953124A0002E4C0 /* ContactAppConstants.swift in Sources */,
 				616503002949AB1F00E3EA20 /* NotesTextViewCell.swift in Sources */,
 				615B1CBF2948667D006BBE81 /* ImgContainerCell.swift in Sources */,
 				6165030D2950756B00E3EA20 /* ImagePreviewPopVC.swift in Sources */,
+				61977436295437B20002E4C0 /* ContactInfoFormHandler.swift in Sources */,
 				616502FA2948E18400E3EA20 /* LabelAndTextFieldCell.swift in Sources */,
 				615B1C962941A8B6006BBE81 /* ViewController.swift in Sources */,
 				615B1CC529486735006BBE81 /* NotesContainerCell.swift in Sources */,
@@ -414,6 +462,7 @@
 				615B1CAE2941ABFA006BBE81 /* ContactListTVC.swift in Sources */,
 				615B1CB9294717A7006BBE81 /* UIColor+Ext.swift in Sources */,
 				615B1C942941A8B6006BBE81 /* SceneDelegate.swift in Sources */,
+				6197742D2952DACE0002E4C0 /* ZCAPIWrapper.swift in Sources */,
 				615B1CB02941B342006BBE81 /* Constants.swift in Sources */,
 				615B1CBD294865DA006BBE81 /* IndividualContactTVC.swift in Sources */,
 				616502F52948D9B400E3EA20 /* CreateAndEditContactTVC.swift in Sources */,
@@ -569,6 +618,7 @@
 				DEVELOPMENT_TEAM = 634W865UK3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ContactApp/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Grant Access to upload contact image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -579,9 +629,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rishab.ContactApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rishab.ContactApp1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ContactApp/Supporting Files/ContactApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -599,6 +650,7 @@
 				DEVELOPMENT_TEAM = 634W865UK3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ContactApp/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Grant Access to upload contact image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -609,9 +661,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rishab.ContactApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rishab.ContactApp1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ContactApp/Supporting Files/ContactApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

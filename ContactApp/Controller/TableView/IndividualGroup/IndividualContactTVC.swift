@@ -11,6 +11,7 @@ class IndividualContactTVC: UITableViewController {
 
     private let _noOfCells: Int = 3
     
+    private var recordId: String!
     private var contactImage: UIImage!
     private var contactName: String!
     private var contactNumber: String!
@@ -20,13 +21,15 @@ class IndividualContactTVC: UITableViewController {
     
     private var index: Int!
     
-    public func setValues(contactImage: UIImage,
+    public func setValues(recordId: String,
+                          contactImage: UIImage,
                           contactName: String,
                           contactNumber: String,
                           email: String,
                           dateOfBirth: String,
                           notes: String, index: Int) {
         
+        self.recordId = recordId
         self.contactImage = contactImage
         self.contactName = contactName
         self.contactNumber = contactNumber
@@ -78,7 +81,8 @@ extension IndividualContactTVC {
         
         let createAndEditContactTVC = CreateAndEditContactTVC()
 
-        createAndEditContactTVC.setValues(contactImage: self.contactImage,
+        createAndEditContactTVC.setValues(recordId: self.recordId,
+                                          contactImage: self.contactImage,
                                           firstName: ContactInfo.getFirstName(from: self.contactName),
                                           lastName: ContactInfo.getLastName(from: self.contactName),
                                           email: self.email,
@@ -143,7 +147,7 @@ extension IndividualContactTVC {
 
 extension IndividualContactTVC {
     @objc private func deleteContact() {
-        ContactsDataSource.deleteContactInfo(at: self.index)
+        ContactsDataSource.deleteContactInfo(at: self.index, recordId: self.recordId)
         dismiss(animated: true)
         self.navigationController?.popToRootViewController(animated: true)
     }

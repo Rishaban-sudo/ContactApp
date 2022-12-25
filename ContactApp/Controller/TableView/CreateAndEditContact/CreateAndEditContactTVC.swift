@@ -17,6 +17,7 @@ class CreateAndEditContactTVC: UITableViewController {
     private var dobTextField: UITextField?
     
     
+    private var recordId: String!
     private var contactImage: UIImage?
     private var firstName: String!
     private var lastName: String!
@@ -30,7 +31,8 @@ class CreateAndEditContactTVC: UITableViewController {
     private var isEditView: Bool = false
     
     
-    public func setValues(contactImage: UIImage,
+    public func setValues(recordId: String,
+                          contactImage: UIImage,
                           firstName: String,
                           lastName: String,
                           email: String,
@@ -40,6 +42,7 @@ class CreateAndEditContactTVC: UITableViewController {
                           index: Int,
                           isEditView: Bool = true)
     {
+        self.recordId = recordId
         self.contactImage = contactImage
         self.firstName = firstName
         self.lastName = lastName
@@ -104,7 +107,8 @@ extension CreateAndEditContactTVC {
         
         if isEditView {
             
-            let contactInfo =  ContactInfo(contactImage: self.contactImage ?? Images.dummyContactImage,
+            let contactInfo =  ContactInfo(recordId: self.recordId,
+                                           contactImage: self.contactImage ?? Images.dummyContactImage,
                         contactName: ContactInfo.concatenateFirstNameAndLastNameToPersist(firstName: self.firstName, lastName: self.lastName),
                         contactNumber: self.phoneNumber,
                         email: self.email,
@@ -131,6 +135,7 @@ extension CreateAndEditContactTVC {
                                               email: self.email,
                                               dateOfBirth: self.dateOfBirth,
                                               notes: self.notes)
+                
                 
                 ContactsDataSource.addContactInfo(contact: contactInfo)
                 self.navigationController?.popViewController(animated: true)

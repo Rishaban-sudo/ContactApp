@@ -46,4 +46,8 @@ struct ZCAPIWrapper {
         ZCFormAPIService.upload(media: media, withFileName: fileName, for: fieldAccessPath, form: form, completionHandler: completionhandler)
     }
     
+    public static func downloadMedia(from recordValue: RecordValue, completionHandler: @escaping (Result<Data>) -> Void) {
+        ZCReportAPIService.downloadMedia(from: recordValue, completionHandler: completionHandler)
+    }
+    
 }

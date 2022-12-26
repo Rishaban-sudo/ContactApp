@@ -33,6 +33,7 @@ struct ContactsDataSource {
             switch result {
             case .success(let listReport):
                 
+                var currentContactIndex: Int = 0  // should be index of last item index in tableview
                 for record in listReport.records {
                     dump(record)
                     
@@ -44,19 +45,14 @@ struct ContactsDataSource {
                     var notes = ""
                     
                     do {
-                        let contactImageRecordValue = try record.recordValue(for: ContactAppConstants.ContactInfoForm.ContactImageField_LinkName).value
+                        let contactImageRecordValue = try record.recordValue(for: ContactAppConstants.ContactInfoForm.ContactImageField_LinkName)
                         let firstNameRecordValue: RecordValue.Value = try record.recordValue(for: ContactAppConstants.ContactInfoForm.FirstNameField_LinkName).value
                         let lastNameRecordValue = try record.recordValue(for: ContactAppConstants.ContactInfoForm.LastNameField_LinkName).value
                         let contactNumberRecordValue = try record.recordValue(for: ContactAppConstants.ContactInfoForm.ContactNumberField_LinkName).value
                         let emailRecordValue = try record.recordValue(for: ContactAppConstants.ContactInfoForm.EmailField_LinkName).value
                         let dateOfBirthRecordValue = try record.recordValue(for: ContactAppConstants.ContactInfoForm.DateOfBirthField_LinkName).value
                         let notesRecordValue = try record.recordValue(for: ContactAppConstants.ContactInfoForm.NotesField_LinkName).value
-                        
-                        if case let RecordValue.Value.file(fileValue) = contactImageRecordValue {
-                            print(fileValue.valueUrl)
-                            print(fileValue.fileName)
-                            print(fileValue.fileType)
-                        }
+                    
                         if case let RecordValue.Value.text(textValue) = firstNameRecordValue {
                             firstName = textValue.value
                         }
@@ -84,6 +80,21 @@ struct ContactsDataSource {
                                                       dateOfBirth: dateOfBirth,
                                                       notes: notes))
                         
+                        // downloading image from server and setting it asynchronously
+                        ZCAPIWrapper.downloadMedia(from: contactImageRecordValue) { [currentContactIndex] (result) in
+                            switch result {
+                            case .success(let data):
+                                
+                                let contactImage = UIImage(data: data)
+                                datasource[currentContactIndex].contactImage = contactImage
+                                
+                            case .failure(let error):
+                                print("Failed to download contact image from server !!")
+                                dump(error)
+                            }
+                        }
+                        
+                        currentContactIndex = currentContactIndex + 1
                         
                     }
                     catch {
@@ -93,6 +104,7 @@ struct ContactsDataSource {
                 }
                 
                 completionHandler(true)
+            
                 
             case .failure(let error):
                 print("Some report error occurred !!")

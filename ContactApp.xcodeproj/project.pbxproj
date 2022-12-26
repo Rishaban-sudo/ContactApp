@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18FE09A3D280DCB4EDCE73FD /* Pods_ContactApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F152E9F81AEE93EA37C2CAE /* Pods_ContactApp.framework */; };
 		615B1C922941A8B6006BBE81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1C912941A8B6006BBE81 /* AppDelegate.swift */; };
 		615B1C942941A8B6006BBE81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1C932941A8B6006BBE81 /* SceneDelegate.swift */; };
 		615B1C962941A8B6006BBE81 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B1C952941A8B6006BBE81 /* LaunchViewController.swift */; };
@@ -40,11 +39,11 @@
 		6197742D2952DACE0002E4C0 /* ZCAPIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6197742C2952DACE0002E4C0 /* ZCAPIWrapper.swift */; };
 		619774332953124A0002E4C0 /* ContactAppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619774322953124A0002E4C0 /* ContactAppConstants.swift */; };
 		61977436295437B20002E4C0 /* ContactInfoFormHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61977435295437B20002E4C0 /* ContactInfoFormHandler.swift */; };
+		AC15101A61B83569BB619A7F /* Pods_ContactApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F863E6673985D7638ED8AA /* Pods_ContactApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2F152E9F81AEE93EA37C2CAE /* Pods_ContactApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ContactApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4857860A943EFEF9E74328D4 /* Pods-ContactApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactApp.release.xcconfig"; path = "Target Support Files/Pods-ContactApp/Pods-ContactApp.release.xcconfig"; sourceTree = "<group>"; };
+		39F863E6673985D7638ED8AA /* Pods_ContactApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ContactApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		615B1C8E2941A8B6006BBE81 /* ContactApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		615B1C912941A8B6006BBE81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		615B1C932941A8B6006BBE81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,7 +79,8 @@
 		6197742C2952DACE0002E4C0 /* ZCAPIWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZCAPIWrapper.swift; sourceTree = "<group>"; };
 		619774322953124A0002E4C0 /* ContactAppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAppConstants.swift; sourceTree = "<group>"; };
 		61977435295437B20002E4C0 /* ContactInfoFormHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoFormHandler.swift; sourceTree = "<group>"; };
-		8FDEA5258CD4AB17A6F3D5B7 /* Pods-ContactApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactApp.debug.xcconfig"; path = "Target Support Files/Pods-ContactApp/Pods-ContactApp.debug.xcconfig"; sourceTree = "<group>"; };
+		BB7DF560ADA330E05C26BCBE /* Pods-ContactApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactApp.debug.xcconfig"; path = "Target Support Files/Pods-ContactApp/Pods-ContactApp.debug.xcconfig"; sourceTree = "<group>"; };
+		D60752944B2BFCDE08AC5967 /* Pods-ContactApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactApp.release.xcconfig"; path = "Target Support Files/Pods-ContactApp/Pods-ContactApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18FE09A3D280DCB4EDCE73FD /* Pods_ContactApp.framework in Frameworks */,
+				AC15101A61B83569BB619A7F /* Pods_ContactApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +101,7 @@
 				615B1C902941A8B6006BBE81 /* ContactApp */,
 				615B1C8F2941A8B6006BBE81 /* Products */,
 				C109EB6B396F15248084489F /* Pods */,
-				B0102FDE9FB22BC159EF2B63 /* Frameworks */,
+				D93BD4B81A978BCC04DAD24A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -306,21 +306,21 @@
 			path = "ZC Form Handler";
 			sourceTree = "<group>";
 		};
-		B0102FDE9FB22BC159EF2B63 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				2F152E9F81AEE93EA37C2CAE /* Pods_ContactApp.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		C109EB6B396F15248084489F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8FDEA5258CD4AB17A6F3D5B7 /* Pods-ContactApp.debug.xcconfig */,
-				4857860A943EFEF9E74328D4 /* Pods-ContactApp.release.xcconfig */,
+				BB7DF560ADA330E05C26BCBE /* Pods-ContactApp.debug.xcconfig */,
+				D60752944B2BFCDE08AC5967 /* Pods-ContactApp.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D93BD4B81A978BCC04DAD24A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				39F863E6673985D7638ED8AA /* Pods_ContactApp.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,11 +330,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 615B1CA22941A8B7006BBE81 /* Build configuration list for PBXNativeTarget "ContactApp" */;
 			buildPhases = (
-				2B6D662A787685E8503A1A06 /* [CP] Check Pods Manifest.lock */,
+				C14FCED421EDDCA4D42802F8 /* [CP] Check Pods Manifest.lock */,
 				615B1C8A2941A8B6006BBE81 /* Sources */,
 				615B1C8B2941A8B6006BBE81 /* Frameworks */,
 				615B1C8C2941A8B6006BBE81 /* Resources */,
-				B076776E3AC072691818B3A9 /* [CP] Embed Pods Frameworks */,
+				50490466AB3F3E53404EA1A3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -393,7 +393,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2B6D662A787685E8503A1A06 /* [CP] Check Pods Manifest.lock */ = {
+		50490466AB3F3E53404EA1A3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ContactApp/Pods-ContactApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ContactApp/Pods-ContactApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ContactApp/Pods-ContactApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C14FCED421EDDCA4D42802F8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -413,23 +430,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B076776E3AC072691818B3A9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ContactApp/Pods-ContactApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ContactApp/Pods-ContactApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ContactApp/Pods-ContactApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -608,7 +608,7 @@
 		};
 		615B1CA32941A8B7006BBE81 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8FDEA5258CD4AB17A6F3D5B7 /* Pods-ContactApp.debug.xcconfig */;
+			baseConfigurationReference = BB7DF560ADA330E05C26BCBE /* Pods-ContactApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -640,7 +640,7 @@
 		};
 		615B1CA42941A8B7006BBE81 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4857860A943EFEF9E74328D4 /* Pods-ContactApp.release.xcconfig */;
+			baseConfigurationReference = D60752944B2BFCDE08AC5967 /* Pods-ContactApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -103,6 +103,8 @@ class ContactInfoFormHandler {
                     switch result {
                     case .success(let fileUploadResponse):
                         print("Image uploaded successfully !")
+                        fileUploadResponse.fileName
+                        
                         dump(fileUploadResponse)
                     case .failure(let error):
                         print("Error occurred while uploading image !")

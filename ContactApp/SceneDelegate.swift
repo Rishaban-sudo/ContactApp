@@ -28,9 +28,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        guard let _ = (scene as? UIWindowScene) else { return }
 //        guard let windowScene = (scene as? UIWindowScene) else { return }
 
-    
+        
+        // setting app launch screen till we fetch data from server
+        self.window?.rootViewController = LaunchViewController()
+        self.window?.makeKeyAndVisible()
+        
         configureApp()
-        Creator.configure(delegate: self)
+        
         
         // To verify if the app is already logged in
 
@@ -106,14 +110,14 @@ extension SceneDelegate {
         let accountsUrl = "https://accounts.zoho.com"
         
         ZohoAuth.initWithClientID(clientId, clientSecret: clientSecret, scope: scope, urlScheme: urlScheme, mainWindow: window, accountsURL: accountsUrl)
+        
+        Creator.configure(delegate: self)
     }
     
     func showInitialController() {
-        ZCAPIWrapper.fetchMyUserInfo(shouldCacheResponse: false, completionHandler: {(result) in
-            switch result {
-            case .success(let userInfo):
-                dump(userInfo)
-                
+        
+        ContactsDataSource.fetchContactsFromZC { (isSuccess) in
+            if isSuccess {
                 let contactListTVC = ContactListTVC()
                 let navController = UINavigationController(rootViewController: contactListTVC)
                 
@@ -139,14 +143,12 @@ extension SceneDelegate {
                 navController.navigationBar.tintColor = .white
                 
                 self.window?.rootViewController = navController
-                self.window?.makeKeyAndVisible()
-            case .failure(_):
-                ZohoAuth.presentZohoSign(in: { (token, error) in
-                    dump(token)
-                })
             }
-        })
-        
+            else {
+                self.window?.rootViewController = LaunchViewController()
+            }
+        }
+
     }
     
 }

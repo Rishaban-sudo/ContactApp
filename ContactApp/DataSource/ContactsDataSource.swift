@@ -20,7 +20,7 @@ struct ContactsDataSource {
     public static var contactsDataViewDelegate: ContactsDataViewDelegate?
     
     
-    public static func fetchContactsFromZC(_ completionHandler: @escaping () -> Void) {
+    public static func fetchContactsFromZC(_ completionHandler: @escaping (Bool) -> Void) {
         let reportInfo = ReportInfo(openUrlInfo: nil,
                                     linkName: ContactAppConstants.AppComponents.AllContactInfos_LinkName,
                                     appDisplayname: nil,
@@ -92,11 +92,12 @@ struct ContactsDataSource {
                     }
                 }
                 
-                completionHandler()
+                completionHandler(true)
                 
             case .failure(let error):
                 print("Some report error occurred !!")
                 dump(error)
+                completionHandler(false)
             }
         }
         

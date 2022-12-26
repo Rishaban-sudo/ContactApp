@@ -40,13 +40,10 @@ class ContactListTVC: UITableViewController {
         setAddButtonConstrainsts()
         configureAddButton()
         configureTableView()
-//        ContactsDataSource.populateDummyData()
         
         ContactsDataSource.contactsDataViewDelegate = self
         
-        ContactsDataSource.fetchContactsFromZC() { () in
-            self.tableView.reloadData()
-        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -55,12 +55,25 @@ class ContactInfoFormHandler {
         }
     }
     
-    private static func setValuesForContactInfoForm(contactInfo: ContactInfo) {
+    private static func setValuesForContactInfoForm(contactInfo: ContactInfo, imageFilename: String) {
         guard let fields = contactInfoForm?.fields else { return }
         
         for field in fields {
             
             switch field.linkName {
+            case ContactAppConstants.ContactInfoForm.ContactImageField_LinkName:
+
+                let contactImageFieldAccessPath = formFieldsFieldAccessPaths[field.linkName]!
+               
+                if let contactImageField = contactInfoForm?.getField(using: contactImageFieldAccessPath),
+                   case var InputValues.imageFieldValue(contactImageFieldvalue) = contactImageField.getValue() {
+                    
+                    
+                    contactImageFieldvalue.sourcePath = "/sharedBy/appLinkName/viewLinkName/fieldName/image/" + imageFilename
+                    setValueForField(with: formFieldsFieldAccessPaths[field.linkName]!, value: .imageFieldValue(fieldValue: contactImageFieldvalue))
+                    
+                }
+
             case ContactAppConstants.ContactInfoForm.FirstNameField_LinkName:
                 
                 setValueForField(with: formFieldsFieldAccessPaths[field.linkName]!, value: .textFieldValue(fieldValue: ContactInfo.getFirstName(from: contactInfo.contactName)))
@@ -97,44 +110,48 @@ class ContactInfoFormHandler {
         fetchContactInfoForm() { (status) in
             
             if status {
-                setValuesForContactInfoForm(contactInfo: contactInfo)
                 
                 submitImageField(contactInfo: contactInfo) { (result) in
                     switch result {
                     case .success(let fileUploadResponse):
                         print("Image uploaded successfully !")
-                        fileUploadResponse.fileName
-                        
                         dump(fileUploadResponse)
+                        
+                        setValuesForContactInfoForm(contactInfo: contactInfo, imageFilename: fileUploadResponse.fileName)
+                        
+                        guard let form = contactInfoForm else { return }
+                        
+                        dump(form)
+                        ZCAPIWrapper.submitForm(form: form) { (result) in
+                            switch result {
+                            case .success(let submitResponse):
+                                print("Form data sent sucessfully !!")
+                                
+                                switch submitResponse {
+                                case .success(let successResponse):
+                                    print("Form Submitted successfully !!")
+                                    dump(successResponse)
+                                    completion(successResponse.recordId!)
+                                case .failure(let failureResponse):
+                                    print("Some error ocurred while putting data !!")
+                                    dump(failureResponse)
+                                }
+                                
+                            case .failure(let error):
+                                print("Error occurred while submitting form !!")
+                                dump(error)
+                            }
+                        }
+                        
+                        
                     case .failure(let error):
                         print("Error occurred while uploading image !")
                         dump(error)
                     }
                 }
                 
-                guard let form = contactInfoForm else { return }
                 
-                dump(form)
-                ZCAPIWrapper.submitForm(form: form) { (result) in
-                    switch result {
-                    case .success(let submitResponse):
-                        print("Form data sent sucessfully !!")
-                        
-                        switch submitResponse {
-                        case .success(let successResponse):
-                            print("Form Submitted successfully !!")
-                            dump(successResponse)
-                            completion(successResponse.recordId!)
-                        case .failure(let failureResponse):
-                            print("Some error ocurred while putting data !!")
-                            dump(failureResponse)
-                        }
-                        
-                    case .failure(let error):
-                        print("Error occurred while submitting form !!")
-                        dump(error)
-                    }
-                }
+                
             }
             
             
@@ -146,42 +163,47 @@ class ContactInfoFormHandler {
         fetchContactInfoForm() { (status) in
             
             if status {
-                setValuesForContactInfoForm(contactInfo: contactInfo)
+                
                 
                 submitImageField(contactInfo: contactInfo) { (result) in
                     switch result {
                     case .success(let fileUploadResponse):
                         print("Image uploaded successfully !")
                         dump(fileUploadResponse)
+                        
+                        setValuesForContactInfoForm(contactInfo: contactInfo, imageFilename: fileUploadResponse.fileName)
+                        
+                        guard let form = contactInfoForm else { return }
+                        
+                        dump(form)
+                        ZCAPIWrapper.updateRecord(withRecordId: contactInfo.recordId,
+                                                  inReportLinkName: ContactAppConstants.AppComponents.AllContactInfos_LinkName, form: form) { (result) in
+                            switch result {
+                            case .success(let submitResponse):
+                                
+                                print("Record Data sent successfully !")
+                                
+                                switch submitResponse {
+                                case .success(let successResponse):
+                                    print("Record updated successfully !!")
+                                    dump(successResponse)
+                                case .failure(let failureResponse):
+                                    print("Error occurred while updating record !!")
+                                    dump(failureResponse)
+                                }
+                            case .failure(let error):
+                                print("Error occurred while updating record !!")
+                                dump(error)
+                            }
+                        }
+                        
                     case .failure(let error):
                         print("Error occurred while uploading image !")
                         dump(error)
                     }
                 }
                 
-                guard let form = contactInfoForm else { return }
-                
-                dump(form)
-                ZCAPIWrapper.updateRecord(withRecordId: contactInfo.recordId,
-                                          inReportLinkName: ContactAppConstants.AppComponents.AllContactInfos_LinkName, form: form) { (result) in
-                    switch result {
-                    case .success(let submitResponse):
-                        
-                        print("Record Data sent successfully !")
-                        
-                        switch submitResponse {
-                        case .success(let successResponse):
-                            print("Record updated successfully !!")
-                            dump(successResponse)
-                        case .failure(let failureResponse):
-                            print("Error occurred while updating record !!")
-                            dump(failureResponse)
-                        }
-                    case .failure(let error):
-                        print("Error occurred while updating record !!")
-                        dump(error)
-                    }
-                }
+
             }
             
         }

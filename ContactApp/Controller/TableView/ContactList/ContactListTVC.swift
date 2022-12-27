@@ -199,6 +199,15 @@ extension ContactListTVC {
 
 extension ContactListTVC: ContactsDataViewDelegate {
     
+    func getTableView() -> UITableView {
+        return self.tableView
+    }
+    
+    func getNoOfContacts() -> Int {
+        return tableView.numberOfRows(inSection: 0)
+    }
+    
+    
     func refreshTableView() {
         self.tableView.reloadData()
     }

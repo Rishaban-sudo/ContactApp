@@ -9,7 +9,11 @@ import Foundation
 import UIKit
 import ZCCoreFramework
 
-protocol ContactsDataViewDelegate {
+protocol ContactsDataViewDelegate: AnyObject {
+    func getTableView() -> UITableView
+    
+    func getNoOfContacts() -> Int
+    
     func refreshTableView()
 }
 
@@ -27,13 +31,19 @@ struct ContactsDataSource {
                                     displayName: nil,
                                     notificationEnabled: false)
         
-        let configuration = ListReportAPIConfiguration(fromIndex: 1, limit: 50, moreInfo: ReportAPIConfiguration.init())
+        var contactLastIndex = 0
+        
+        if let contactLastIndex1 = contactsDataViewDelegate?.getNoOfContacts() {
+            contactLastIndex = contactLastIndex1
+        }
+        
+        let configuration = ListReportAPIConfiguration(fromIndex: contactLastIndex + 1, limit: 50, moreInfo: ReportAPIConfiguration.init())
         
         ZCAPIWrapper.fetchRecordsFromListReport(reportInfo: reportInfo, configuration: configuration) { (result) in
             switch result {
             case .success(let listReport):
                 
-                var currentContactIndex: Int = 0  // should be index of last item index in tableview
+                var currentContactIndex: Int = contactLastIndex  // should be index of last item index in tableview
                 for record in listReport.records {
                     dump(record)
                     
@@ -87,6 +97,8 @@ struct ContactsDataSource {
                                 
                                 let contactImage = UIImage(data: data)
                                 datasource[currentContactIndex].contactImage = contactImage
+                                let indexPath = IndexPath(row: currentContactIndex, section: 0)
+                                contactsDataViewDelegate?.getTableView().reloadRows(at: [indexPath], with: .automatic)
                                 
                             case .failure(let error):
                                 print("Failed to download contact image from server !!")

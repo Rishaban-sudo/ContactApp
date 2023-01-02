@@ -15,6 +15,8 @@ class ContactListInteractor: PresenterToInteractorContactListProtocol {
     
     var contactsList: [ContactInfo] = []
     
+    var contactImageRecordValDict: [Int : ZCCoreFramework.RecordValue] = [:]
+    
     func fetchContactsFromZC() {
         let reportInfo = ReportInfo(openUrlInfo: nil,
                                     linkName: ContactAppConstants.AppComponents.AllContactInfos_LinkName,
@@ -85,24 +87,9 @@ class ContactListInteractor: PresenterToInteractorContactListProtocol {
                         
                         contactsList.append(contactInfo)
                         
-                        presenter?.onSingleContactFetchSuccess(contact: contactInfo)
                         
-                        // downloading image from server and setting it asynchronously
-                        ZCAPIWrapper.downloadMedia(from: contactImageRecordValue) { [self, currentContactIndex] (result) in
-                            switch result {
-                            case .success(let data):
-                                
-                                let contactImage = UIImage(data: data)
-                                contactsList[currentContactIndex].contactImage = contactImage
-                                let _ = IndexPath(row: currentContactIndex, section: 0)
-                                presenter?.imageFetchSuccess(contactImage: contactImage ?? Images.dummyContactImage!, at: currentContactIndex)
-
-                                
-                            case .failure(let error):
-                                print("Failed to download contact image from server !!")
-                                dump(error)
-                            }
-                        }
+                        
+                        contactImageRecordValDict[currentContactIndex] = contactImageRecordValue
                         
                         currentContactIndex = currentContactIndex + 1
                         
@@ -124,5 +111,24 @@ class ContactListInteractor: PresenterToInteractorContactListProtocol {
         }
     }
     
+    func fetchContactImages() {
+        for (contactIndex, contactImageRecordValue) in contactImageRecordValDict {
+            
+            ZCAPIWrapper.downloadMedia(from: contactImageRecordValue) { [weak self] (result) in
+                switch result {
+                case .success(let data):
+
+                    let contactImage = UIImage(data: data)
+                    self?.contactsList[contactIndex].contactImage = contactImage
+                    self?.presenter?.imageFetchSuccess(contactImage: contactImage!, at: contactIndex)
+
+                case .failure(let error):
+                    print("Failed to download contact image from server !!")
+                    dump(error)
+                }
+            }
+            
+        }
+    }
     
 }

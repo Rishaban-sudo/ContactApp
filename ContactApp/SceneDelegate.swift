@@ -43,12 +43,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if token == nil {
                 ZohoAuth.presentZohoSign(in: { (token, error) in
                     dump(token)
-                    self.showInitialController()
+                    DispatchQueue.main.async {
+                        self.showInitialController()
+                    }
                 })
             }
             else {
                 print("App is already logged in")
-                self.showInitialController()
+                DispatchQueue.main.async {
+                    self.showInitialController()
+                }
             }
         }
         

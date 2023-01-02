@@ -54,6 +54,7 @@ class IndividualContactTVC: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 
@@ -62,6 +63,7 @@ class IndividualContactTVC: UITableViewController {
         tableView.insetsContentViewsToSafeArea = true
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
+        
         
         tableView.register(ImgContainerCell.self, forCellReuseIdentifier: ImgContainerCell.cellIdentifier)
         tableView.register(ContactInfoContainerCell.self, forCellReuseIdentifier: ContactInfoContainerCell.cellIdentifier)

@@ -33,10 +33,15 @@ class ContactListRouter: PresenterToRouterContactListProtocol {
     }
     
     func pushIndividualContactDetail(on view: PresenterToViewContactListProtocol?, with contactInfo: ContactInfo) {
-        // push the individual contact view controller upon this navigation controller
+        // push the individual contact view controller upon this view navigation controller
         // which get returned from individual contact module router
         // along with that pass the contact info model to the viewcontroller
         
+        let individualContactViewController = IndividualContactRouter.createModule(with: contactInfo)
+        
+        if let contactListViewController = view as? ContactListViewController {
+            contactListViewController.navigationController?.pushViewController(individualContactViewController, animated: true)
+        }
         
     }
     

@@ -11,6 +11,7 @@ import UIKit
 class ContactListPresenter: ViewToPresenterContactListProtocol {
 
     var contactList = [ContactInfo]()
+    private let queue = DispatchQueue.global(qos: .default)
     
     private var flag = true
     private var switchFlag = false
@@ -41,7 +42,6 @@ class ContactListPresenter: ViewToPresenterContactListProtocol {
     }
     
     func setCellForRowAt(indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
-        print("Index row :  \(indexPath.row)")
         if switchFlag == false {
             let cell = tableView.dequeueReusableCell(withIdentifier: ContactInfoCell.cellIdentifier, for: indexPath) as! ContactInfoCell
             let contactInfo = contactList[indexPath.row]
@@ -74,9 +74,12 @@ class ContactListPresenter: ViewToPresenterContactListProtocol {
         tableView.deselectRow(at: indexPath, animated: true)
         
         setFlagState(to: false)
+        view?.makeAddButtonDisAppear()
         
         // From this presenter we will call the router to navigate to IndividualContact Screen
         // Also we will pass the contact info to the router
+        let contactInfo = contactList[indexPath.row]
+        router?.pushIndividualContactDetail(on: view, with: contactInfo)
     }
     
     func canEditRowAt(indexPath: IndexPath, tableView: UITableView) -> Bool {
@@ -110,6 +113,10 @@ class ContactListPresenter: ViewToPresenterContactListProtocol {
         view?.reloadTableView()
     }
     
+    func pushCreateAndEditContactVC() {
+        // router -> create and edit VC router
+    }
+    
 }
 
 
@@ -125,12 +132,18 @@ extension ContactListPresenter: InteractorToPresenterContactListProtocol {
     }
     
     func contactListFetchSuccess(contacts: [ContactInfo]) {
-        self.contactList = contacts
+        self.contactList.append(contentsOf: contacts)
+        
         view?.hideActivityIndicator()
+        
         DispatchQueue.main.async {
             self.view?.onContactListFetchSuccess()
         }
-//        view?.onContactListFetchSuccess()
+        
+        queue.async {
+            self.interactor?.fetchContactImages()
+        }
+        
     }
     
     func contactListFetchFailure(error: String) {

@@ -33,6 +33,13 @@ class ContactInfoContainerCell: UITableViewCell {
         dateOfBirthValueLabel.text = dateOfBirth
     }
     
+    public func setCellContext(with model: ContactInfoContainerModel) {
+        mobileValueLabel.text = model.mobileNo
+        nameValueLabel.text = model.name
+        emailValueLabel.text = model.email
+        dateOfBirthValueLabel.text = model.dateOfBirth
+    }
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

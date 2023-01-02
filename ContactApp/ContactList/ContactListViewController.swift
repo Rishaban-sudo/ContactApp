@@ -91,7 +91,7 @@ class ContactListViewController: UITableViewController {
         addButton.layer.cornerRadius = 64 / 2
         addButton.clipsToBounds = true
         addButton.layer.masksToBounds = true
-//        addButton.addTarget(self, action: #selector(onButtonTap), for: .touchUpInside)
+        addButton.addTarget(self, action: #selector(onButtonTap), for: .touchUpInside)
     }
     
     private func setAddButtonConstrainsts() {
@@ -131,12 +131,20 @@ extension ContactListViewController: PresenterToViewContactListProtocol {
         setAddButtonConstrainsts()
     }
     
+    func makeAddButtonDisAppear() {
+        addButton.removeFromSuperview()
+    }
+    
     func reloadTableView() {
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     func reloadTableViewRows(at indexpaths: [IndexPath], with rowAnimation: UITableView.RowAnimation) {
-        tableView.reloadRows(at: indexpaths, with: rowAnimation)
+        DispatchQueue.main.async {
+            self.tableView.reloadRows(at: indexpaths, with: rowAnimation)
+        }
     }
     
     
@@ -153,10 +161,6 @@ extension ContactListViewController: PresenterToViewContactListProtocol {
 
 // MARK: - TableView delegate methods
 extension ContactListViewController {
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter?.numberOfRowsInSection() ?? 0
@@ -193,4 +197,13 @@ extension ContactListViewController {
         presenter?.reloadTableView()
     }
     
+}
+
+
+extension ContactListViewController {
+    @objc private func onButtonTap() {
+        makeAddButtonDisAppear()
+        presenter?.setFlagState(to: false)
+        presenter?.pushCreateAndEditContactVC()
+    }
 }

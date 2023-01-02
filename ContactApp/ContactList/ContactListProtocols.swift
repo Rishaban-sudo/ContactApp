@@ -31,6 +31,8 @@ protocol ViewToPresenterContactListProtocol: AnyObject {
     
     //reload tableView
     func reloadTableView()
+    
+    func pushCreateAndEditContactVC()
 }
 
 // MARK: - (Presenter -> View) presenter will update the view
@@ -41,6 +43,7 @@ protocol PresenterToViewContactListProtocol: AnyObject {
     func hideActivityIndicator()
     
     func makeAddButtonAppear()
+    func makeAddButtonDisAppear()
     
     func reloadTableView()
     
@@ -61,6 +64,7 @@ protocol PresenterToInteractorContactListProtocol: AnyObject {
     var contactsList: [ContactInfo] { get set }
     
     func fetchContactsFromZC()
+    func fetchContactImages()
 }
 
 // MARK: - (Interactor -> Presenter) interactor will give data to the presenter

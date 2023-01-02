@@ -29,6 +29,11 @@ class ImgContainerCell: UITableViewCell {
         contactNumberlabel.text = contactNumber
     }
     
+    public func setCellContext(with model: ImgContainerModel) {
+        contactImageView.image = model.contactImage
+        contactNameLabel.text = model.contactName
+        contactNumberlabel.text = model.contactNumber
+    }
     
     public func getContactImageView() -> UIImageView {
         return contactImageView

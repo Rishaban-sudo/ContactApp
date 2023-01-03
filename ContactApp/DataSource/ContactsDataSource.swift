@@ -151,11 +151,11 @@ struct ContactsDataSource {
     
     public static func addContactInfo(contact: ContactInfo) {
         var contact1 = contact
-        ContactInfoFormHandler.submit(contactInfo: contact1) { (recordId) in
-            contact1.setRecordId(recordId)
-            datasource.append(contact1)
-            self.contactsDataViewDelegate?.refreshTableView()
-        }
+//        ContactInfoFormHandler.submit(contactInfo: contact1) { (recordId) in
+//            contact1.setRecordId(recordId)
+//            datasource.append(contact1)
+//            self.contactsDataViewDelegate?.refreshTableView()
+//        }
     }
     
     public static func editContactInfo(at index: Int , contact: ContactInfo) {
@@ -166,12 +166,12 @@ struct ContactsDataSource {
         datasource[index].dateOfBirth = contact.dateOfBirth
         datasource[index].notes = contact.notes
         
-        ContactInfoFormHandler.editContactinfo(contactInfo: contact)
+//        ContactInfoFormHandler.editContactinfo(contactInfo: contact)
     }
     
     public static func deleteContactInfo(at index: Int, recordId: String) {
         datasource.remove(at: index)
-        ContactInfoFormHandler.deleteContactInfos(recordIds: [recordId])
+//        ContactInfoFormHandler.deleteContactInfos(recordIds: [recordId])
     }
     
 }

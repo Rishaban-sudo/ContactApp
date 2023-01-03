@@ -29,8 +29,8 @@ class IndividualContactViewController: UITableViewController {
     private func setUpIndividualContactViewController() {
         overrideUserInterfaceStyle = .light
         
-//        navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(onDeleteButtonTap)),
-//                                              UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(onEditButtonTap))]
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(onDeleteButtonTap)),
+                                              UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(onEditButtonTap))]
         configureTableView()
     }
     
@@ -75,6 +75,18 @@ extension IndividualContactViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter?.didSelectRowAt(indexPath: indexPath, tableView: tableView)
+    }
+    
+}
+
+extension IndividualContactViewController {
+    
+    @objc private func onEditButtonTap() {
+        presenter?.editButtonTapped()
+    }
+    
+    @objc private func onDeleteButtonTap() {
+        presenter?.deleteButtonTapped()
     }
     
 }

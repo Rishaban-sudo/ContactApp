@@ -129,6 +129,12 @@ class ContactListInteractor: PresenterToInteractorContactListProtocol {
             }
             
         }
+        
+        contactImageRecordValDict.removeAll()
+    }
+    
+    func clearCache() {
+        self.contactsList.removeAll()
     }
     
 }

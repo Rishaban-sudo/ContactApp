@@ -90,7 +90,13 @@ class IndividualContactPresenter: ViewToPresenterIndividualContactProtocol {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
+    func editButtonTapped() {
+        router?.pushEditContactView(on: view, with: contactInfo)
+    }
     
+    func deleteButtonTapped() {
+        // needs to be implemented
+    }
     
 }
 

@@ -46,4 +46,17 @@ class ContactListRouter: PresenterToRouterContactListProtocol {
     }
     
     
+    func pushCreateContactView(on view: PresenterToViewContactListProtocol?) {
+        let vc = CreateAndEditContactRouter.createModule()
+        
+        guard let createAndEditViewController = vc as? CreateAndEditViewController else { return }
+        
+        createAndEditViewController.configureAsCreateContactView()
+        
+        if let contactListViewController = view as? ContactListViewController {
+            contactListViewController.navigationController?.pushViewController(createAndEditViewController, animated: true)
+        }
+        
+    }
+    
 }

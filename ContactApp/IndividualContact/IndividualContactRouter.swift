@@ -29,4 +29,16 @@ class IndividualContactRouter: PresenterToRouterIndividualContactProtocol {
         return individualContactViewController
     }
     
+    func pushEditContactView(on view: PresenterToViewIndividualContactProtocol?, with contactInfo: ContactInfo) {
+        let vc = CreateAndEditContactRouter.createModule(with: contactInfo)
+        
+        guard let createAndEditViewController = vc as? CreateAndEditViewController else { return }
+        
+        createAndEditViewController.configureAsEditContactView()
+        
+        if let individualContactViewController = view as? IndividualContactViewController {
+            individualContactViewController.navigationController?.pushViewController(createAndEditViewController, animated: true)
+        }
+    }
+    
 }

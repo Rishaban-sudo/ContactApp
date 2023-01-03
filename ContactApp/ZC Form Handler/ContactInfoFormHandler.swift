@@ -105,7 +105,7 @@ class ContactInfoFormHandler {
         
     }
     
-    public static func submit(contactInfo: ContactInfo, completion: @escaping (String) -> Void) {  // to get recordId when submitting the form
+    public static func submit(contactInfo: ContactInfo, completion: @escaping (Bool, String) -> Void) {  // to get recordId when submitting the form
         
         fetchContactInfoForm() { (status) in
             
@@ -130,16 +130,21 @@ class ContactInfoFormHandler {
                                 switch submitResponse {
                                 case .success(let successResponse):
                                     print("Form Submitted successfully !!")
+                                    
                                     dump(successResponse)
-                                    completion(successResponse.recordId!)
+                                    completion(true, "Contact Added successfully !!")
                                 case .failure(let failureResponse):
                                     print("Some error ocurred while putting data !!")
+                                    
                                     dump(failureResponse)
+                                    completion(false, failureResponse.message ?? "Some error ocurred while putting data !!")
                                 }
                                 
                             case .failure(let error):
                                 print("Error occurred while submitting form !!")
+                                
                                 dump(error)
+                                completion(false, error.localizedDescription)
                             }
                         }
                         
@@ -147,6 +152,7 @@ class ContactInfoFormHandler {
                     case .failure(let error):
                         print("Error occurred while uploading image !")
                         dump(error)
+                        completion(false, error.localizedDescription)
                     }
                 }
                 

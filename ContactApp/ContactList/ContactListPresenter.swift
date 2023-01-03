@@ -115,6 +115,18 @@ class ContactListPresenter: ViewToPresenterContactListProtocol {
     
     func pushCreateAndEditContactVC() {
         // router -> create and edit VC router
+        router?.pushCreateContactView(on: view)
+    }
+    
+    func refetchData() {
+        view?.showActivityIndicator()
+        
+        self.contactList.removeAll()
+        reloadTableView()
+        
+        // clear the previous data and fetch new data from interactor
+        interactor?.clearCache()
+        interactor?.fetchContactsFromZC()
     }
     
 }

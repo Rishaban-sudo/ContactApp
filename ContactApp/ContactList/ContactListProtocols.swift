@@ -33,6 +33,8 @@ protocol ViewToPresenterContactListProtocol: AnyObject {
     func reloadTableView()
     
     func pushCreateAndEditContactVC()
+    
+    func refetchData()
 }
 
 // MARK: - (Presenter -> View) presenter will update the view
@@ -65,6 +67,8 @@ protocol PresenterToInteractorContactListProtocol: AnyObject {
     
     func fetchContactsFromZC()
     func fetchContactImages()
+    
+    func clearCache()
 }
 
 // MARK: - (Interactor -> Presenter) interactor will give data to the presenter
@@ -95,4 +99,5 @@ protocol PresenterToRouterContactListProtocol: AnyObject {
     static func createModule() -> UINavigationController
     
     func pushIndividualContactDetail(on view: PresenterToViewContactListProtocol?, with contactInfo: ContactInfo)
+    func pushCreateContactView(on view: PresenterToViewContactListProtocol?)
 }

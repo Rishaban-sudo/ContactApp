@@ -23,6 +23,9 @@ protocol ViewToPresenterIndividualContactProtocol: AnyObject {
     func numberOfRowsInSection() -> Int
     func setCellForRowAt(indexPath: IndexPath, tableView: UITableView) -> UITableViewCell
     func didSelectRowAt(indexPath: IndexPath, tableView: UITableView)
+    
+    func editButtonTapped()
+    func deleteButtonTapped()
 }
 
 // MARK: - (Presenter -> View) presenter will update the view
@@ -60,4 +63,5 @@ protocol InteractorToPresenterIndividualContactProtocol: AnyObject {
 // MARK: - (Presenter -> Router)
 protocol PresenterToRouterIndividualContactProtocol: AnyObject {
     static func createModule(with contact: ContactInfo) -> UIViewController
+    func pushEditContactView(on view: PresenterToViewIndividualContactProtocol?, with contactInfo: ContactInfo)
 }

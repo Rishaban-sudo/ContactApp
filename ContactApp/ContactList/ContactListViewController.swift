@@ -31,6 +31,9 @@ class ContactListViewController: UITableViewController {
         return addButton
     }
     
+    public func refreshScreen() {
+        presenter?.refetchData()
+    }
     
     
     override func viewDidLoad() {

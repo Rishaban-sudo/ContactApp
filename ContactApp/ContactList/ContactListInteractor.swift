@@ -17,6 +17,12 @@ class ContactListInteractor: PresenterToInteractorContactListProtocol {
     
     var contactImageRecordValDict: [Int : ZCCoreFramework.RecordValue] = [:]
     
+    
+    deinit {
+        print("Deinit ContactListInteractor")
+    }
+    
+    
     func fetchContactsFromZC() {
         let reportInfo = ReportInfo(openUrlInfo: nil,
                                     linkName: ContactAppConstants.AppComponents.AllContactInfos_LinkName,

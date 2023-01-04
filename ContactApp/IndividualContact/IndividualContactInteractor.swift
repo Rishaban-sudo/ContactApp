@@ -13,6 +13,11 @@ class IndividualContactInteractor: PresenterToInteractorIndividualContactProtoco
     
     var contactInfo: ContactInfo!
     
+    deinit {
+        print("Deinit IndividualContactInteractor")
+    }
+    
+    
     func getIndividualContactInfo() -> ContactInfo {
         return contactInfo
     }

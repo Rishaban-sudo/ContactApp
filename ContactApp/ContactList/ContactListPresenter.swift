@@ -20,6 +20,11 @@ class ContactListPresenter: ViewToPresenterContactListProtocol {
     var interactor: PresenterToInteractorContactListProtocol?
     var router: PresenterToRouterContactListProtocol?
     
+    deinit {
+        print("Deinit ContactListPresenter")
+    }
+    
+    
     func viewDidLoad() {
         
         // show loading activity while fetching data from server
@@ -92,14 +97,17 @@ class ContactListPresenter: ViewToPresenterContactListProtocol {
                                                 title: "Delete",
                                                 handler: { (action, indexpath) in
             let contactInfo = self.contactList[indexPath.row]
+            
+            self.contactList.remove(at: indexpath.row)
+            tableView.deleteRows(at: [indexpath], with: .automatic)
+            
             ContactInfoFormHandler.deleteContactInfos(recordIds: [contactInfo.recordId]) { (isSucess, message) in
                 if isSucess {
-                    self.contactList.remove(at: indexpath.row)
                     self.interactor?.deleteContact(at: indexpath.row)
-                    
-                    tableView.deleteRows(at: [indexpath], with: .automatic)
                 }
                 else {
+                    self.contactList.insert(contactInfo, at: indexpath.row)
+                    tableView.insertRows(at: [indexpath], with: .automatic)
                     self.view?.showAlert(title: "Contact Deletion Failed", message: message)
                 }
             }

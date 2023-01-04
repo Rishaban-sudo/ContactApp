@@ -358,8 +358,8 @@
 				61A899182962DC090055C136 /* IndividualContactViewController.swift */,
 				61A8991A2962E26D0055C136 /* IndividualContactPresenter.swift */,
 				61A8991E2962EEFD0055C136 /* IndividualContactInteractor.swift */,
-				61A8991C2962E7790055C136 /* IndividualContactEntity.swift */,
 				61A899202962F2350055C136 /* IndividualContactRouter.swift */,
+				61A8991C2962E7790055C136 /* IndividualContactEntity.swift */,
 			);
 			path = IndividualContact;
 			sourceTree = "<group>";

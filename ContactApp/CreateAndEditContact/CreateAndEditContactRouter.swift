@@ -12,6 +12,10 @@ class CreateAndEditContactRouter: PresenterToRouterCreateAndEditContactProtocol 
     
     weak var viewController: UIViewController?
     
+    deinit {
+        print("Deinit CreateAndEditContactRouter")
+    }
+    
     static func createModule(with contact: ContactInfo? = nil) -> UIViewController {
         let createAndEditContactViewcontroller = CreateAndEditViewController()
         

@@ -35,6 +35,10 @@ class ContactListViewController: UITableViewController {
         presenter?.refetchData()
     }
     
+    deinit {
+        print("Deinit ContactListViewController")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

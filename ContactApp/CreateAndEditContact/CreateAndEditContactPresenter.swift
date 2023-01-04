@@ -23,6 +23,11 @@ class CreateAndEditContactPresenter: NSObject,ViewToPresenterCreateAndEditContac
     private var dobTextField: UITextField?
     
     
+    deinit {
+        print("Deinit CreateAndEditContactPresenter")
+    }
+    
+    
     func getContactInfoModel(from contactDetail: ContactDetail) -> ContactInfo {
         
         if isEditView {

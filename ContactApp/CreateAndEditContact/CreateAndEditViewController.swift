@@ -13,6 +13,10 @@ class CreateAndEditViewController: UITableViewController {
     
     let loadingViewController = LoadingViewController.getInstance()
     
+    deinit {
+        print("Deinit CreateAndEditViewController")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

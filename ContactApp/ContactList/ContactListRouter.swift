@@ -10,6 +10,10 @@ import UIKit
 
 class ContactListRouter: PresenterToRouterContactListProtocol {
     
+    deinit {
+        print("Deinit ContactListInteractor")
+    }
+    
     static func createModule() -> UINavigationController {
         let contactListviewController = ContactListViewController()
         

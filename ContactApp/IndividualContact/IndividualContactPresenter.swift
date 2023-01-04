@@ -19,6 +19,9 @@ class IndividualContactPresenter: ViewToPresenterIndividualContactProtocol {
     
     var contactInfo: ContactInfo!
     
+    deinit {
+        print("Deinit IndividualContactPresenter")
+    }
     
     func viewDidLoad() {
         // Get the contact info from interactor

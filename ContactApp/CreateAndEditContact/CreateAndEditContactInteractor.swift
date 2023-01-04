@@ -14,6 +14,10 @@ class CreateAndEditContactInteractor: PresenterToInteractorCreateAndEditContactP
     
     var contactInfo: ContactInfo!
     
+    deinit {
+        print("Deinit CreateAndEditContactInteractor")
+    }
+    
     
     func getIndividualContactInfo() -> ContactInfo {
         return contactInfo

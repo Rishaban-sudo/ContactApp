@@ -12,6 +12,12 @@ class IndividualContactRouter: PresenterToRouterIndividualContactProtocol {
     
     weak var viewController: UIViewController?
     
+    
+    deinit {
+        print("Deinit IndividualContactRouter")
+    }
+    
+    
     private lazy var deleteContactPopVC = {
         let deleteContactPopVC = DeleteContactPopVC()
         

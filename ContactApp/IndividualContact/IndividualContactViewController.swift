@@ -13,6 +13,11 @@ class IndividualContactViewController: UITableViewController {
     
     let loadingViewController = LoadingViewController.getInstance()
     
+    deinit {
+        print("Deinit IndividualContactViewController")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

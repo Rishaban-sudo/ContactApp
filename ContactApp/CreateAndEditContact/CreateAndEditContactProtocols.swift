@@ -34,7 +34,6 @@ protocol ViewToPresenterCreateAndEditContactProtocol: AnyObject {
 
 // MARK: - (Presenter -> View) presenter will update the view
 protocol PresenterToViewCreateAndEditContactProtocol: AnyObject {
-//    var presenter: ViewToPresenterContactListProtocol? { get set }
     
     func setViewTitle(title: String)
     

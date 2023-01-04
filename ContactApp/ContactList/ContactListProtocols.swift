@@ -39,7 +39,6 @@ protocol ViewToPresenterContactListProtocol: AnyObject {
 
 // MARK: - (Presenter -> View) presenter will update the view
 protocol PresenterToViewContactListProtocol: AnyObject {
-//    var presenter: ViewToPresenterContactListProtocol? { get set }
     
     func showActivityIndicator()
     func hideActivityIndicator()

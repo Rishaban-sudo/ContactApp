@@ -10,7 +10,7 @@ import UIKit
 
 class CreateAndEditContactInteractor: PresenterToInteractorCreateAndEditContactProtocol {
     
-    var presenter: InteractorToPresenterCreateAndEditContactProtocol?
+    weak var presenter: InteractorToPresenterCreateAndEditContactProtocol?
     
     var contactInfo: ContactInfo!
     

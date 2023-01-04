@@ -29,6 +29,11 @@ class ImagePreviewPopVC: UIViewController {
     }
     
     
+    deinit {
+        print("Deinit ImagePreviewPopVC")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

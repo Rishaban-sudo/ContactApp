@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class IndividualContactInteractor: PresenterToInteractorIndividualContactProtocol {
-    var presenter: InteractorToPresenterIndividualContactProtocol?
+    weak var presenter: InteractorToPresenterIndividualContactProtocol?
     
     var contactInfo: ContactInfo!
     

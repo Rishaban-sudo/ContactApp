@@ -11,6 +11,7 @@ class IndividualContactViewController: UITableViewController {
 
     var presenter: (ViewToPresenterIndividualContactProtocol & InteractorToPresenterIndividualContactProtocol)?
     
+    let loadingViewController = LoadingViewController.getInstance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +58,43 @@ extension IndividualContactViewController: PresenterToViewIndividualContactProto
     
     func presentPopUpView(view: UIViewController, animated: Bool) {
         self.present(view, animated: animated)
+    }
+    
+    func showLoadingScreen() {
+        loadingViewController.modalPresentationStyle = .overCurrentContext
+        loadingViewController.modalTransitionStyle = .crossDissolve
+        
+        self.present(loadingViewController, animated: true)
+    }
+    
+    func dismissLoadingScreen() {
+        loadingViewController.dismiss(animated: true)
+    }
+    
+    func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+        }
+
+        alertController.addAction(OKAction)
+
+        self.present(alertController, animated: true)
+    }
+    
+    func showAlertWith(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+
+        let OKAction = UIAlertAction(title: "OK", style: .default) { [self] (action:UIAlertAction!) in
+            
+            guard let navigationController = navigationController else { return }
+            presenter?.returnToContactListScreen(navController: navigationController)
+            
+        }
+
+        alertController.addAction(OKAction)
+
+        self.present(alertController, animated: true)
     }
     
 }

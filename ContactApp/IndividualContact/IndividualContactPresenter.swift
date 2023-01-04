@@ -16,22 +16,22 @@ class IndividualContactPresenter: ViewToPresenterIndividualContactProtocol {
     
     private let _noOfCells: Int = 3
     
-    
-    //    private var recordId: String!
-    //    private var contactImage: UIImage!
-    //    private var contactName: String!
-    //    private var contactNumber: String!
-    //    private var email: String!
-    //    private var dateOfBirth: String!
-    //    private var notes: String!
-    //
-    //    private var index: Int!
-    
+    private let deleteContactPopVC = {
+        let deleteContactPopVC = DeleteContactPopVC()
+        
+        deleteContactPopVC.modalPresentationStyle = .overCurrentContext
+        deleteContactPopVC.modalTransitionStyle   = .crossDissolve
+        
+        return deleteContactPopVC
+    } ()
     
     
     var contactInfo: ContactInfo!
     
+    
+    
     func viewDidLoad() {
+        deleteContactPopVC.getDeleteButton().addTarget(self, action: #selector(deleteContact), for: .touchUpInside)
         // Get the contact info from interactor
         contactInfo = interactor?.getIndividualContactInfo()
     }
@@ -95,7 +95,12 @@ class IndividualContactPresenter: ViewToPresenterIndividualContactProtocol {
     }
     
     func deleteButtonTapped() {
-        // needs to be implemented
+        view?.presentPopUpView(view: deleteContactPopVC, animated: true)
+    }
+    
+    
+    func returnToContactListScreen(navController: UINavigationController) {
+        router?.popToHomeScreen(navController: navController)
     }
     
 }
@@ -112,6 +117,12 @@ extension IndividualContactPresenter {
         view?.presentPopUpView(view: imagePreviewPopVC, animated: true)
     }
     
+    @objc private func deleteContact() {
+        deleteContactPopVC.dismiss(animated: true)
+        view?.showLoadingScreen()
+        interactor?.deleteContact(recordIds: [self.contactInfo.recordId])
+    }
+    
 }
 
 extension IndividualContactPresenter {
@@ -124,5 +135,15 @@ extension IndividualContactPresenter {
 
 
 extension IndividualContactPresenter: InteractorToPresenterIndividualContactProtocol {
+    
+    func onDeleteContactSuccess(message: String) {
+        view?.dismissLoadingScreen()
+        view?.showAlertWith(title: "Contact Deleted Successfully", message: message)
+    }
+    
+    func onDeleteContactFailure(message: String) {
+        view?.dismissLoadingScreen()
+        view?.showAlert(title: "Error occurred !!", message: message)
+    }
     
 }

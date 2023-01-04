@@ -51,6 +51,8 @@ protocol PresenterToViewContactListProtocol: AnyObject {
     
     func reloadTableViewRows(at indexpaths: [IndexPath], with rowAnimation: UITableView.RowAnimation)
     
+    func showAlert(title: String, message: String)
+    
     func onContactListFetchSuccess()
     func onContactListFetchFailure(error: String)
 }
@@ -67,6 +69,8 @@ protocol PresenterToInteractorContactListProtocol: AnyObject {
     
     func fetchContactsFromZC()
     func fetchContactImages()
+    
+    func deleteContact(at index: Int)
     
     func clearCache()
 }

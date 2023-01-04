@@ -26,12 +26,20 @@ protocol ViewToPresenterIndividualContactProtocol: AnyObject {
     
     func editButtonTapped()
     func deleteButtonTapped()
+    
+    func returnToContactListScreen(navController: UINavigationController)
 }
 
 // MARK: - (Presenter -> View) presenter will update the view
 protocol PresenterToViewIndividualContactProtocol: AnyObject {
 //    var presenter: ViewToPresenterContactListProtocol? { get set }
     func presentPopUpView(view: UIViewController, animated: Bool)
+    
+    func showLoadingScreen()
+    func dismissLoadingScreen()
+    
+    func showAlert(title: String, message: String)
+    func showAlertWith(title: String, message: String)
 }
 
 
@@ -44,12 +52,15 @@ protocol PresenterToInteractorIndividualContactProtocol: AnyObject {
     var contactInfo: ContactInfo! { get set }
     
     func getIndividualContactInfo() -> ContactInfo
+    func deleteContact(recordIds: [String])
 }
 
 // MARK: - (Interactor -> Presenter) interactor will give data to the presenter
 protocol InteractorToPresenterIndividualContactProtocol: AnyObject {
     var interactor: PresenterToInteractorIndividualContactProtocol? { get set }
     
+    func onDeleteContactSuccess(message: String)
+    func onDeleteContactFailure(message: String)
 }
 
 
@@ -63,5 +74,7 @@ protocol InteractorToPresenterIndividualContactProtocol: AnyObject {
 // MARK: - (Presenter -> Router)
 protocol PresenterToRouterIndividualContactProtocol: AnyObject {
     static func createModule(with contact: ContactInfo) -> UIViewController
+    
     func pushEditContactView(on view: PresenterToViewIndividualContactProtocol?, with contactInfo: ContactInfo)
+    func popToHomeScreen(navController: UINavigationController)
 }

@@ -91,9 +91,18 @@ class ContactListPresenter: ViewToPresenterContactListProtocol {
         let deleteAction = UITableViewRowAction(style: .destructive,
                                                 title: "Delete",
                                                 handler: { (action, indexpath) in
-            let contactInfo = ContactsDataSource.getContactInfo(at: indexpath.row)
-            ContactsDataSource.deleteContactInfo(at: indexpath.row, recordId: contactInfo.recordId)
-            tableView.deleteRows(at: [indexpath], with: .automatic)
+            let contactInfo = self.contactList[indexPath.row]
+            ContactInfoFormHandler.deleteContactInfos(recordIds: [contactInfo.recordId]) { (isSucess, message) in
+                if isSucess {
+                    self.contactList.remove(at: indexpath.row)
+                    self.interactor?.deleteContact(at: indexpath.row)
+                    
+                    tableView.deleteRows(at: [indexpath], with: .automatic)
+                }
+                else {
+                    self.view?.showAlert(title: "Contact Deletion Failed", message: message)
+                }
+            }
         })
         
         return [deleteAction]

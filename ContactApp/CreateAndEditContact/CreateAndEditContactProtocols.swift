@@ -61,6 +61,7 @@ protocol PresenterToInteractorCreateAndEditContactProtocol: AnyObject {
     
     func getIndividualContactInfo() -> ContactInfo
     func addContact(contact: ContactInfo)
+    func editContact(contact: ContactInfo)
 }
 
 // MARK: - (Interactor -> Presenter) interactor will give data to the presenter
@@ -69,6 +70,9 @@ protocol InteractorToPresenterCreateAndEditContactProtocol: AnyObject {
     
     func onAddContactSuccess(message: String)
     func onAddConatctFailure(message: String)
+    
+    func onEditContactSuccess(message: String)
+    func onEditContactFailure(message: String)
 }
 
 

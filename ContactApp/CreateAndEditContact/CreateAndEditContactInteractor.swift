@@ -30,4 +30,15 @@ class CreateAndEditContactInteractor: PresenterToInteractorCreateAndEditContactP
         }
     }
     
+    func editContact(contact: ContactInfo) {
+        ContactInfoFormHandler.editContactinfo(contactInfo: contact) { (isSuccess, message) in
+            if isSuccess {
+                self.presenter?.onEditContactSuccess(message: message)
+            }
+            else {
+                self.presenter?.onEditContactFailure(message: message)
+            }
+        }
+    }
+    
 }

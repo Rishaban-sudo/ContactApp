@@ -17,5 +17,16 @@ class IndividualContactInteractor: PresenterToInteractorIndividualContactProtoco
         return contactInfo
     }
     
+    func deleteContact(recordIds: [String]) {
+        ContactInfoFormHandler.deleteContactInfos(recordIds: recordIds) { (isSucess, message) in
+            if isSucess {
+                self.presenter?.onDeleteContactSuccess(message: message)
+            }
+            else {
+                self.presenter?.onDeleteContactFailure(message: message)
+            }
+        }
+    }
+    
     
 }

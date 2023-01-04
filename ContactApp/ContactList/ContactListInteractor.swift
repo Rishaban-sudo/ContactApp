@@ -133,6 +133,10 @@ class ContactListInteractor: PresenterToInteractorContactListProtocol {
         contactImageRecordValDict.removeAll()
     }
     
+    func deleteContact(at index: Int) {
+        self.contactsList.remove(at: index)
+    }
+    
     func clearCache() {
         self.contactsList.removeAll()
     }

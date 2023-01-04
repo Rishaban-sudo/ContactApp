@@ -41,4 +41,13 @@ class IndividualContactRouter: PresenterToRouterIndividualContactProtocol {
         }
     }
     
+    func popToHomeScreen(navController: UINavigationController) {
+        
+        if let contactListViewController = navController.viewControllers[0] as? ContactListViewController {
+            contactListViewController.refreshScreen()
+        }
+        
+        navController.popToRootViewController(animated: true)
+    }
+    
 }

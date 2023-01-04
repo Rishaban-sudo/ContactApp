@@ -24,16 +24,32 @@ class CreateAndEditContactPresenter: NSObject,ViewToPresenterCreateAndEditContac
     
     
     func getContactInfoModel(from contactDetail: ContactDetail) -> ContactInfo {
-        let contactInfo = ContactInfo(recordId: nil,
-                                      contactImage: contactDetail.contactImage,
-                                      contactName: ContactInfo.concatenateFirstNameAndLastNameToPersist(firstName: contactDetail.firstName,
-                                                                                                        lastName: contactDetail.lastName),
-                                      contactNumber: contactDetail.phoneNumber,
-                                      email: contactDetail.email,
-                                      dateOfBirth: contactDetail.dateOfBirth,
-                                      notes: contactDetail.notes)
         
-        return contactInfo
+        if isEditView {
+            let contactInfo = ContactInfo(recordId: contactDetail.recordId,
+                                          contactImage: contactDetail.contactImage,
+                                          contactName: ContactInfo.concatenateFirstNameAndLastNameToPersist(firstName: contactDetail.firstName,
+                                                                                                            lastName: contactDetail.lastName),
+                                          contactNumber: contactDetail.phoneNumber,
+                                          email: contactDetail.email,
+                                          dateOfBirth: contactDetail.dateOfBirth,
+                                          notes: contactDetail.notes)
+            
+            return contactInfo
+        }
+        else {
+            let contactInfo = ContactInfo(recordId: nil,
+                                          contactImage: contactDetail.contactImage,
+                                          contactName: ContactInfo.concatenateFirstNameAndLastNameToPersist(firstName: contactDetail.firstName,
+                                                                                                            lastName: contactDetail.lastName),
+                                          contactNumber: contactDetail.phoneNumber,
+                                          email: contactDetail.email,
+                                          dateOfBirth: contactDetail.dateOfBirth,
+                                          notes: contactDetail.notes)
+            
+            return contactInfo
+        }
+        
     }
     
     
@@ -41,7 +57,8 @@ class CreateAndEditContactPresenter: NSObject,ViewToPresenterCreateAndEditContac
         // in create contact case we don't need to fetch data from interactor
         if isEditView {
             guard let contactInfo = interactor?.getIndividualContactInfo() else { return }
-            contactDetail = ContactDetail(contactImage: contactInfo.contactImage,
+            contactDetail = ContactDetail(recordId: contactInfo.recordId,
+                                          contactImage: contactInfo.contactImage,
                                           firstName: ContactInfo.getFirstName(from: contactInfo.contactName),
                                           lastName: ContactInfo.getLastName(from: contactInfo.contactName),
                                           email: contactInfo.email,
@@ -173,18 +190,38 @@ class CreateAndEditContactPresenter: NSObject,ViewToPresenterCreateAndEditContac
     }
     
     
+    
+    private func validate(contactDetail: ContactDetail) -> Bool {
+        if (contactDetail.firstName != nil && contactDetail.firstName != "") &&
+            (contactDetail.lastName != nil && contactDetail.lastName != "") &&
+            (contactDetail.email != nil && contactDetail.email != "") &&
+            (contactDetail.phoneNumber != nil && contactDetail.phoneNumber != "") &&
+            (contactDetail.dateOfBirth != nil && contactDetail.dateOfBirth != "") &&
+            (contactDetail.notes != nil && contactDetail.notes != "")
+        {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
     func saveButtonTapped() {
         if isEditView {
-            // need to write for editting contact
+            
+            if (validate(contactDetail: self.contactDetail))
+            {
+                view?.showLoadingScreen()
+                interactor?.editContact(contact: getContactInfoModel(from: self.contactDetail))
+            }
+            else {
+                view?.showAlert(title: "Insufficient Data", message: "Please do fill all the fields")
+            }
+            
         }
         else {
             
-            if contactDetail.firstName != nil &&
-                contactDetail.lastName != nil &&
-                contactDetail.email != nil &&
-                contactDetail.phoneNumber != nil &&
-                contactDetail.dateOfBirth != nil &&
-                contactDetail.notes != nil
+            if (validate(contactDetail: self.contactDetail))
             {
                 view?.showLoadingScreen()
                 interactor?.addContact(contact: getContactInfoModel(from: self.contactDetail))
@@ -329,7 +366,17 @@ extension CreateAndEditContactPresenter: InteractorToPresenterCreateAndEditConta
     
     func onAddConatctFailure(message: String) {
         view?.dismissLoadingScreen()
-        view?.showAlertWith(title: "Error!!", message: message)
+        view?.showAlert(title: "Error!!", message: message)
+    }
+    
+    func onEditContactSuccess(message: String) {
+        view?.dismissLoadingScreen()
+        view?.showAlertWith(title: "Contact Updated Successfully", message: message)
+    }
+    
+    func onEditContactFailure(message: String) {
+        view?.dismissLoadingScreen()
+        view?.showAlert(title: "Failed to Edit!!", message: message)
     }
     
 }

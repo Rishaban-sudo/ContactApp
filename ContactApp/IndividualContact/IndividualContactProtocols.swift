@@ -27,13 +27,14 @@ protocol ViewToPresenterIndividualContactProtocol: AnyObject {
     func editButtonTapped()
     func deleteButtonTapped()
     
-    func returnToContactListScreen(navController: UINavigationController)
+    func returnToContactListScreen()
+    
+    // This method will be called from router using view's presenter reference
+    func deleteContact()
 }
 
 // MARK: - (Presenter -> View) presenter will update the view
 protocol PresenterToViewIndividualContactProtocol: AnyObject {
-//    var presenter: ViewToPresenterContactListProtocol? { get set }
-    func presentPopUpView(view: UIViewController, animated: Bool)
     
     func showLoadingScreen()
     func dismissLoadingScreen()
@@ -75,6 +76,9 @@ protocol InteractorToPresenterIndividualContactProtocol: AnyObject {
 protocol PresenterToRouterIndividualContactProtocol: AnyObject {
     static func createModule(with contact: ContactInfo) -> UIViewController
     
+    func popUpImageView(contactImage: UIImage)
+    func popUpDeleteContactView()
+    
     func pushEditContactView(on view: PresenterToViewIndividualContactProtocol?, with contactInfo: ContactInfo)
-    func popToHomeScreen(navController: UINavigationController)
+    func popToHomeScreen()
 }

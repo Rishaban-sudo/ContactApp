@@ -23,7 +23,7 @@ class IndividualContactViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem.getDefaultButton()
         presenter?.viewWillAppear()
     }
     
@@ -56,9 +56,7 @@ class IndividualContactViewController: UITableViewController {
 
 extension IndividualContactViewController: PresenterToViewIndividualContactProtocol {
     
-    func presentPopUpView(view: UIViewController, animated: Bool) {
-        self.present(view, animated: animated)
-    }
+
     
     func showLoadingScreen() {
         loadingViewController.modalPresentationStyle = .overCurrentContext
@@ -86,10 +84,7 @@ extension IndividualContactViewController: PresenterToViewIndividualContactProto
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
         let OKAction = UIAlertAction(title: "OK", style: .default) { [self] (action:UIAlertAction!) in
-            
-            guard let navigationController = navigationController else { return }
-            presenter?.returnToContactListScreen(navController: navigationController)
-            
+            presenter?.returnToContactListScreen()
         }
 
         alertController.addAction(OKAction)

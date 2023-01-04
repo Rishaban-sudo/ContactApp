@@ -10,6 +10,29 @@ import UIKit
 
 class IndividualContactRouter: PresenterToRouterIndividualContactProtocol {
     
+    weak var viewController: UIViewController?
+    
+    private lazy var deleteContactPopVC = {
+        let deleteContactPopVC = DeleteContactPopVC()
+        
+        deleteContactPopVC.modalPresentationStyle = .overCurrentContext
+        deleteContactPopVC.modalTransitionStyle   = .crossDissolve
+        
+        deleteContactPopVC.getDeleteButton().addTarget(self, action: #selector(deleteContact), for: .touchUpInside)
+        
+        return deleteContactPopVC
+    } ()
+    
+    
+    @objc private func deleteContact() {
+        if let individualContactViewController = viewController as? IndividualContactViewController {
+            deleteContactPopVC.dismiss(animated: true)
+            individualContactViewController.presenter?.deleteContact()
+        }
+    }
+    
+    
+    
     static func createModule(with contact: ContactInfo) -> UIViewController {
         let individualContactViewController = IndividualContactViewController()
         
@@ -18,7 +41,9 @@ class IndividualContactRouter: PresenterToRouterIndividualContactProtocol {
         
         individualContactViewController.presenter = presenter
         
-        individualContactViewController.presenter?.router = IndividualContactRouter()
+        let router = IndividualContactRouter()
+        
+        individualContactViewController.presenter?.router = router
         individualContactViewController.presenter?.view = individualContactViewController
         individualContactViewController.presenter?.interactor = IndividualContactInteractor()
         
@@ -26,7 +51,23 @@ class IndividualContactRouter: PresenterToRouterIndividualContactProtocol {
         
         individualContactViewController.presenter?.interactor?.presenter = presenter
         
+        router.viewController = individualContactViewController
+        
         return individualContactViewController
+    }
+    
+    func popUpImageView(contactImage: UIImage) {
+        let imagePreviewPopVC = ImagePreviewPopVC()
+        imagePreviewPopVC.setImagePreview(with: contactImage)
+        
+        imagePreviewPopVC.modalPresentationStyle = .overCurrentContext
+        imagePreviewPopVC.modalTransitionStyle   = .crossDissolve
+        
+        viewController?.present(imagePreviewPopVC, animated: true)
+    }
+    
+    func popUpDeleteContactView() {
+        viewController?.present(deleteContactPopVC, animated: true)
     }
     
     func pushEditContactView(on view: PresenterToViewIndividualContactProtocol?, with contactInfo: ContactInfo) {
@@ -41,13 +82,12 @@ class IndividualContactRouter: PresenterToRouterIndividualContactProtocol {
         }
     }
     
-    func popToHomeScreen(navController: UINavigationController) {
-        
-        if let contactListViewController = navController.viewControllers[0] as? ContactListViewController {
+    func popToHomeScreen() {
+        if let contactListViewController = viewController?.navigationController?.viewControllers[0] as? ContactListViewController {
             contactListViewController.refreshScreen()
         }
         
-        navController.popToRootViewController(animated: true)
+        viewController?.navigationController?.popToRootViewController(animated: true)
     }
     
 }

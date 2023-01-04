@@ -29,7 +29,7 @@ protocol ViewToPresenterCreateAndEditContactProtocol: AnyObject {
     
     func saveButtonTapped()
     
-    func returnToContactListScreen(navController: UINavigationController)
+    func returnToContactListScreen()
 }
 
 // MARK: - (Presenter -> View) presenter will update the view
@@ -80,5 +80,5 @@ protocol InteractorToPresenterCreateAndEditContactProtocol: AnyObject {
 protocol PresenterToRouterCreateAndEditContactProtocol: AnyObject {
     static func createModule(with contact: ContactInfo?) -> UIViewController
     
-    func popToHomeScreen(navController: UINavigationController)
+    func popToHomeScreen()
 }

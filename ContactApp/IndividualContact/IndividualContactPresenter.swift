@@ -16,22 +16,11 @@ class IndividualContactPresenter: ViewToPresenterIndividualContactProtocol {
     
     private let _noOfCells: Int = 3
     
-    private let deleteContactPopVC = {
-        let deleteContactPopVC = DeleteContactPopVC()
-        
-        deleteContactPopVC.modalPresentationStyle = .overCurrentContext
-        deleteContactPopVC.modalTransitionStyle   = .crossDissolve
-        
-        return deleteContactPopVC
-    } ()
-    
     
     var contactInfo: ContactInfo!
     
     
-    
     func viewDidLoad() {
-        deleteContactPopVC.getDeleteButton().addTarget(self, action: #selector(deleteContact), for: .touchUpInside)
         // Get the contact info from interactor
         contactInfo = interactor?.getIndividualContactInfo()
     }
@@ -95,12 +84,17 @@ class IndividualContactPresenter: ViewToPresenterIndividualContactProtocol {
     }
     
     func deleteButtonTapped() {
-        view?.presentPopUpView(view: deleteContactPopVC, animated: true)
+        router?.popUpDeleteContactView()
     }
     
     
-    func returnToContactListScreen(navController: UINavigationController) {
-        router?.popToHomeScreen(navController: navController)
+    func returnToContactListScreen() {
+        router?.popToHomeScreen()
+    }
+    
+    func deleteContact() {
+        view?.showLoadingScreen()
+        interactor?.deleteContact(recordIds: [self.contactInfo.recordId])
     }
     
 }
@@ -108,19 +102,7 @@ class IndividualContactPresenter: ViewToPresenterIndividualContactProtocol {
 extension IndividualContactPresenter {
     
     @objc private func imageTapped() {
-        let imagePreviewPopVC = ImagePreviewPopVC()
-        imagePreviewPopVC.setImagePreview(with: self.contactInfo.contactImage)
-        
-        imagePreviewPopVC.modalPresentationStyle = .overCurrentContext
-        imagePreviewPopVC.modalTransitionStyle   = .crossDissolve
-        
-        view?.presentPopUpView(view: imagePreviewPopVC, animated: true)
-    }
-    
-    @objc private func deleteContact() {
-        deleteContactPopVC.dismiss(animated: true)
-        view?.showLoadingScreen()
-        interactor?.deleteContact(recordIds: [self.contactInfo.recordId])
+        router?.popUpImageView(contactImage: self.contactInfo.contactImage)
     }
     
 }

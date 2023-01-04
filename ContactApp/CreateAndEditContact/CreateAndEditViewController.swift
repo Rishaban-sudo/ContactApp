@@ -115,10 +115,7 @@ extension CreateAndEditViewController: PresenterToViewCreateAndEditContactProtoc
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
         let OKAction = UIAlertAction(title: "OK", style: .default) { [self] (action:UIAlertAction!) in
-            
-            guard let navigationController = navigationController else { return }
-            presenter?.returnToContactListScreen(navController: navigationController)
-            
+            presenter?.returnToContactListScreen()
         }
 
         alertController.addAction(OKAction)

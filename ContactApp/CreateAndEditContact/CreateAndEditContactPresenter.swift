@@ -57,14 +57,7 @@ class CreateAndEditContactPresenter: NSObject,ViewToPresenterCreateAndEditContac
         // in create contact case we don't need to fetch data from interactor
         if isEditView {
             guard let contactInfo = interactor?.getIndividualContactInfo() else { return }
-            contactDetail = ContactDetail(recordId: contactInfo.recordId,
-                                          contactImage: contactInfo.contactImage,
-                                          firstName: ContactInfo.getFirstName(from: contactInfo.contactName),
-                                          lastName: ContactInfo.getLastName(from: contactInfo.contactName),
-                                          email: contactInfo.email,
-                                          phoneNumber: contactInfo.contactNumber,
-                                          dateOfBirth: contactInfo.dateOfBirth,
-                                          notes: contactInfo.notes)
+            contactDetail = ContactDetail(contactInfo: contactInfo)
         }
         else {
             contactDetail = ContactDetail(contactImage: Images.dummyContactImage)
@@ -192,12 +185,12 @@ class CreateAndEditContactPresenter: NSObject,ViewToPresenterCreateAndEditContac
     
     
     private func validate(contactDetail: ContactDetail) -> Bool {
-        if (contactDetail.firstName != nil && contactDetail.firstName != "") &&
-            (contactDetail.lastName != nil && contactDetail.lastName != "") &&
-            (contactDetail.email != nil && contactDetail.email != "") &&
-            (contactDetail.phoneNumber != nil && contactDetail.phoneNumber != "") &&
-            (contactDetail.dateOfBirth != nil && contactDetail.dateOfBirth != "") &&
-            (contactDetail.notes != nil && contactDetail.notes != "")
+        if (contactDetail.firstName    != "") &&
+            (contactDetail.lastName    != "") &&
+            (contactDetail.email       != "") &&
+            (contactDetail.phoneNumber != "") &&
+            (contactDetail.dateOfBirth != "") &&
+            (contactDetail.notes       != "")
         {
             return true
         }
@@ -233,8 +226,8 @@ class CreateAndEditContactPresenter: NSObject,ViewToPresenterCreateAndEditContac
         }
     }
     
-    func returnToContactListScreen(navController: UINavigationController) {
-        router?.popToHomeScreen(navController: navController)
+    func returnToContactListScreen() {
+        router?.popToHomeScreen()
     }
     
 }
@@ -258,19 +251,19 @@ extension CreateAndEditContactPresenter {
         }
         
         if index.row == 1 {
-            self.contactDetail.firstName = cell.getTextField().text
+            self.contactDetail.firstName = cell.getTextField().text ?? ""
         }
         else if index.row == 2 {
-            self.contactDetail.lastName = cell.getTextField().text
+            self.contactDetail.lastName = cell.getTextField().text ?? ""
         }
         else if index.row == 3 {
-            self.contactDetail.email = cell.getTextField().text
+            self.contactDetail.email = cell.getTextField().text ?? ""
         }
         else if index.row == 4 {
-            self.contactDetail.phoneNumber = cell.getTextField().text
+            self.contactDetail.phoneNumber = cell.getTextField().text ?? ""
         }
         else if index.row == 5 {
-            self.contactDetail.dateOfBirth = cell.getTextField().text
+            self.contactDetail.dateOfBirth = cell.getTextField().text ?? ""
         }
         
     }

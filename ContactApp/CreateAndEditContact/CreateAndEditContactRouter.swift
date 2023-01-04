@@ -10,6 +10,8 @@ import UIKit
 
 class CreateAndEditContactRouter: PresenterToRouterCreateAndEditContactProtocol {
     
+    weak var viewController: UIViewController?
+    
     static func createModule(with contact: ContactInfo? = nil) -> UIViewController {
         let createAndEditContactViewcontroller = CreateAndEditViewController()
         
@@ -18,7 +20,9 @@ class CreateAndEditContactRouter: PresenterToRouterCreateAndEditContactProtocol 
         
         createAndEditContactViewcontroller.presenter = presenter
         
-        createAndEditContactViewcontroller.presenter?.router = CreateAndEditContactRouter()
+        let router = CreateAndEditContactRouter()
+        
+        createAndEditContactViewcontroller.presenter?.router = router
         createAndEditContactViewcontroller.presenter?.view = createAndEditContactViewcontroller
         createAndEditContactViewcontroller.presenter?.interactor = CreateAndEditContactInteractor()
         
@@ -26,16 +30,17 @@ class CreateAndEditContactRouter: PresenterToRouterCreateAndEditContactProtocol 
         
         createAndEditContactViewcontroller.presenter?.interactor?.presenter = presenter
         
+        router.viewController = createAndEditContactViewcontroller
+        
         return createAndEditContactViewcontroller
     }
     
-    func popToHomeScreen(navController: UINavigationController) {
-        
-        if let contactListViewController = navController.viewControllers[0] as? ContactListViewController {
+    func popToHomeScreen() {
+        if let contactListViewController = viewController?.navigationController?.viewControllers[0] as? ContactListViewController {
             contactListViewController.refreshScreen()
         }
         
-        navController.popToRootViewController(animated: true)
+        viewController?.navigationController?.popToRootViewController(animated: true)
     }
     
 }

@@ -94,8 +94,13 @@ class CreateAndEditContactPresenter: NSObject,ViewToPresenterCreateAndEditContac
             if isEditView {
                 cell.setContactImage(contactImage: contactDetail.contactImage)
             }
-            else { // for create contact we will show the default image
-                cell.setContactImage(contactImage: Images.dummyContactImage)
+            else {
+                if contactDetail.contactImage != nil && contactDetail.contactImage != Images.dummyContactImage {
+                    cell.setContactImage(contactImage: contactDetail.contactImage)
+                }
+                else {
+                    cell.setContactImage(contactImage: Images.dummyContactImage)
+                }
             }
             
             cell.getContactImgButton().addTarget(self, action: #selector(uploadImage), for: .touchUpInside)

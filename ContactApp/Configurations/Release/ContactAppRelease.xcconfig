@@ -1,0 +1,9 @@
+#include "Pods/Target Support Files/Pods-ContactApp/Pods-ContactApp.release.xcconfig"
+
+APP_NAME = ContactApp
+CODE_SIGN_IDENTITY = iPhone Distribution
+DEVELOPMENT_TEAM = 	RDBAA992Q3
+PRODUCT_BUNDLE_IDENTIFIER = com.zoho.rishab.ContactApp
+PROVISIONING_PROFILE = TestContactApp
+PROVISIONING_PROFILE_SPECIFIER = TestContactApp
+

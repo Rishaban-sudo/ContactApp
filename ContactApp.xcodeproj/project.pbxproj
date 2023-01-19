@@ -33,6 +33,8 @@
 		61650309294CB3A800E3EA20 /* DeleteContactPopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61650308294CB3A800E3EA20 /* DeleteContactPopVC.swift */; };
 		6165030D2950756B00E3EA20 /* ImagePreviewPopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6165030C2950756B00E3EA20 /* ImagePreviewPopVC.swift */; };
 		6165031029509DBE00E3EA20 /* CallAPIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6165030F29509DBE00E3EA20 /* CallAPIWrapper.swift */; };
+		617614962977C31A004B125F /* ContactAppRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 617614952977C31A004B125F /* ContactAppRelease.xcconfig */; };
+		617614992977F6A8004B125F /* ContactAppDebug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 617614982977F6A8004B125F /* ContactAppDebug.xcconfig */; };
 		6197742A2952D0490002E4C0 /* ZCAppInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 619774292952D0490002E4C0 /* ZCAppInfo.plist */; };
 		6197742D2952DACE0002E4C0 /* ZCAPIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6197742C2952DACE0002E4C0 /* ZCAPIWrapper.swift */; };
 		619774332953124A0002E4C0 /* ContactAppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619774322953124A0002E4C0 /* ContactAppConstants.swift */; };
@@ -56,6 +58,7 @@
 		61D16DF5295C279900842552 /* ContactListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D16DF4295C279900842552 /* ContactListEntity.swift */; };
 		61D16DF7295C48AF00842552 /* ContactListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D16DF6295C48AF00842552 /* ContactListInteractor.swift */; };
 		61D16DF9295C5CA000842552 /* ContactListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D16DF8295C5CA000842552 /* ContactListRouter.swift */; };
+		61F7D887296C51400087F6FE /* exportOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61F7D886296C51400087F6FE /* exportOptions.plist */; };
 		AC15101A61B83569BB619A7F /* Pods_ContactApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F863E6673985D7638ED8AA /* Pods_ContactApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +92,8 @@
 		61650308294CB3A800E3EA20 /* DeleteContactPopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteContactPopVC.swift; sourceTree = "<group>"; };
 		6165030C2950756B00E3EA20 /* ImagePreviewPopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewPopVC.swift; sourceTree = "<group>"; };
 		6165030F29509DBE00E3EA20 /* CallAPIWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallAPIWrapper.swift; sourceTree = "<group>"; };
+		617614952977C31A004B125F /* ContactAppRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ContactAppRelease.xcconfig; sourceTree = "<group>"; };
+		617614982977F6A8004B125F /* ContactAppDebug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ContactAppDebug.xcconfig; sourceTree = "<group>"; };
 		61977426295217E60002E4C0 /* ContactApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ContactApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		619774292952D0490002E4C0 /* ZCAppInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ZCAppInfo.plist; sourceTree = "<group>"; };
 		6197742C2952DACE0002E4C0 /* ZCAPIWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZCAPIWrapper.swift; sourceTree = "<group>"; };
@@ -113,6 +118,7 @@
 		61D16DF4295C279900842552 /* ContactListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListEntity.swift; sourceTree = "<group>"; };
 		61D16DF6295C48AF00842552 /* ContactListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListInteractor.swift; sourceTree = "<group>"; };
 		61D16DF8295C5CA000842552 /* ContactListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListRouter.swift; sourceTree = "<group>"; };
+		61F7D886296C51400087F6FE /* exportOptions.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = exportOptions.plist; sourceTree = "<group>"; };
 		BB7DF560ADA330E05C26BCBE /* Pods-ContactApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactApp.debug.xcconfig"; path = "Target Support Files/Pods-ContactApp/Pods-ContactApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D60752944B2BFCDE08AC5967 /* Pods-ContactApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactApp.release.xcconfig"; path = "Target Support Files/Pods-ContactApp/Pods-ContactApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,6 +156,7 @@
 		615B1C902941A8B6006BBE81 /* ContactApp */ = {
 			isa = PBXGroup;
 			children = (
+				617614932977BDC8004B125F /* Configurations */,
 				61A89922296315690055C136 /* CreateAndEditContact */,
 				61A899132962D8B20055C136 /* IndividualContact */,
 				61D16DED295B57CD00842552 /* ContactList */,
@@ -285,9 +292,35 @@
 			path = CallApiWrapper;
 			sourceTree = "<group>";
 		};
+		617614932977BDC8004B125F /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				617614972977F6A8004B125F /* Debug */,
+				617614942977BDFB004B125F /* Release */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		617614942977BDFB004B125F /* Release */ = {
+			isa = PBXGroup;
+			children = (
+				617614952977C31A004B125F /* ContactAppRelease.xcconfig */,
+			);
+			path = Release;
+			sourceTree = "<group>";
+		};
+		617614972977F6A8004B125F /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				617614982977F6A8004B125F /* ContactAppDebug.xcconfig */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
 		619774252952177D0002E4C0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				61F7D885296C50800087F6FE /* Export Config */,
 				61977426295217E60002E4C0 /* ContactApp-Bridging-Header.h */,
 				619774292952D0490002E4C0 /* ZCAppInfo.plist */,
 			);
@@ -355,6 +388,14 @@
 				61D16DF8295C5CA000842552 /* ContactListRouter.swift */,
 			);
 			path = ContactList;
+			sourceTree = "<group>";
+		};
+		61F7D885296C50800087F6FE /* Export Config */ = {
+			isa = PBXGroup;
+			children = (
+				61F7D886296C51400087F6FE /* exportOptions.plist */,
+			);
+			path = "Export Config";
 			sourceTree = "<group>";
 		};
 		C109EB6B396F15248084489F /* Pods */ = {
@@ -434,8 +475,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				617614962977C31A004B125F /* ContactAppRelease.xcconfig in Resources */,
 				615B1C9E2941A8B7006BBE81 /* LaunchScreen.storyboard in Resources */,
 				615B1C9B2941A8B7006BBE81 /* Assets.xcassets in Resources */,
+				617614992977F6A8004B125F /* ContactAppDebug.xcconfig in Resources */,
+				61F7D887296C51400087F6FE /* exportOptions.plist in Resources */,
 				615B1C992941A8B6006BBE81 /* Main.storyboard in Resources */,
 				6197742A2952D0490002E4C0 /* ZCAppInfo.plist in Resources */,
 			);
@@ -676,16 +720,20 @@
 		};
 		615B1CA32941A8B7006BBE81 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BB7DF560ADA330E05C26BCBE /* Pods-ContactApp.debug.xcconfig */;
+			baseConfigurationReference = 617614982977F6A8004B125F /* ContactAppDebug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 634W865UK3;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = RDBAA992Q3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ContactApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Contact App";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Grant Access to upload contact image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -697,8 +745,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rishab.ContactApp2;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = TestContactApp;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "ContactApp/Supporting Files/ContactApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -708,16 +758,20 @@
 		};
 		615B1CA42941A8B7006BBE81 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D60752944B2BFCDE08AC5967 /* Pods-ContactApp.release.xcconfig */;
+			baseConfigurationReference = 617614952977C31A004B125F /* ContactAppRelease.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 634W865UK3;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = RDBAA992Q3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ContactApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Contact App";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Grant Access to upload contact image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -729,8 +783,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rishab.ContactApp2;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = TestContactApp;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "ContactApp/Supporting Files/ContactApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

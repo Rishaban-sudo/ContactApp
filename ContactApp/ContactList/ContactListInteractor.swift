@@ -1,30 +1,29 @@
 //
-//  ContactsDataSource.swift
+//  ContactListInteractor.swift
 //  ContactApp
 //
-//  Created by rishab-13586 on 13/12/22.
+//  Created by rishab-13586 on 28/12/22.
 //
 
 import Foundation
-import UIKit
 import ZCCoreFramework
 
-protocol ContactsDataViewDelegate: AnyObject {
-    func getTableView() -> UITableView
-    
-    func getNoOfContacts() -> Int
-    
-    func refreshTableView()
-}
 
-
-struct ContactsDataSource {
-    public static var datasource: [ContactInfo] = []
+class ContactListInteractor: PresenterToInteractorContactListProtocol {
     
-    public static var contactsDataViewDelegate: ContactsDataViewDelegate?
+    weak var presenter: InteractorToPresenterContactListProtocol?
+    
+    var contactsList: [ContactInfo] = []
+    
+    var contactImageRecordValDict: [Int : ZCCoreFramework.RecordValue] = [:]
     
     
-    public static func fetchContactsFromZC(_ completionHandler: @escaping (Bool) -> Void) {
+    deinit {
+        print("Deinit ContactListInteractor")
+    }
+    
+    
+    func fetchContactsFromZC() {
         let reportInfo = ReportInfo(openUrlInfo: nil,
                                     linkName: ContactAppConstants.AppComponents.AllContactInfos_LinkName,
                                     appDisplayname: nil,
@@ -33,13 +32,13 @@ struct ContactsDataSource {
         
         var contactLastIndex = 0
         
-        if let contactLastIndex1 = contactsDataViewDelegate?.getNoOfContacts() {
+        if let contactLastIndex1 = presenter?.getTotalNoOfcontacts() {
             contactLastIndex = contactLastIndex1
         }
         
         let configuration = ListReportAPIConfiguration(fromIndex: contactLastIndex + 1, limit: 50, moreInfo: ReportAPIConfiguration.init())
         
-        ZCAPIWrapper.fetchRecordsFromListReport(reportInfo: reportInfo, configuration: configuration) { (result) in
+        ZCAPIWrapper.fetchRecordsFromListReport(reportInfo: reportInfo, configuration: configuration) { [self] (result) in
             switch result {
             case .success(let listReport):
                 
@@ -82,29 +81,21 @@ struct ContactsDataSource {
                             notes = textValue.value
                         }
                         
-                        datasource.append(ContactInfo(recordId: record.recordID,
+                        
+                        let contactInfo = ContactInfo(recordId: record.recordID,
                                                       contactImage: Images.dummyContactImage, // as of now using default image
                                                       contactName: ContactInfo.concatenateFirstNameAndLastNameToPersist(firstName: firstName, lastName: lastName),
                                                       contactNumber: contactnumber,
                                                       email: email,
                                                       dateOfBirth: dateOfBirth,
-                                                      notes: notes))
+                                                      notes: notes)
                         
-                        // downloading image from server and setting it asynchronously
-                        ZCAPIWrapper.downloadMedia(from: contactImageRecordValue) { [currentContactIndex] (result) in
-                            switch result {
-                            case .success(let data):
-                                
-                                let contactImage = UIImage(data: data)
-                                datasource[currentContactIndex].contactImage = contactImage
-                                let indexPath = IndexPath(row: currentContactIndex, section: 0)
-                                contactsDataViewDelegate?.getTableView().reloadRows(at: [indexPath], with: .automatic)
-                                
-                            case .failure(let error):
-                                print("Failed to download contact image from server !!")
-                                dump(error)
-                            }
-                        }
+                        
+                        contactsList.append(contactInfo)
+                        
+                        
+                        
+                        contactImageRecordValDict[currentContactIndex] = contactImageRecordValue
                         
                         currentContactIndex = currentContactIndex + 1
                         
@@ -115,63 +106,45 @@ struct ContactsDataSource {
                     }
                 }
                 
-                completionHandler(true)
-            
+                presenter?.contactListFetchSuccess(contacts: contactsList)
                 
             case .failure(let error):
                 print("Some report error occurred !!")
                 dump(error)
-                completionHandler(false)
+                presenter?.contactListFetchFailure(error: error.localizedDescription)
             }
+            
+        }
+    }
+    
+    func fetchContactImages() {
+        for (contactIndex, contactImageRecordValue) in contactImageRecordValDict {
+            
+            ZCAPIWrapper.downloadMedia(from: contactImageRecordValue) { [weak self] (result) in
+                switch result {
+                case .success(let data):
+
+                    let contactImage = UIImage(data: data)
+                    self?.contactsList[contactIndex].contactImage = contactImage
+                    self?.presenter?.imageFetchSuccess(contactImage: contactImage!, at: contactIndex)
+
+                case .failure(let error):
+                    print("Failed to download contact image from server !!")
+                    dump(error)
+                }
+            }
+            
         }
         
+        contactImageRecordValDict.removeAll()
     }
     
-    
-//    public static func populateDummyData() {
-//
-//        for i in 1...30 {
-//            datasource.append(ContactInfo(contactImage: Images.dummyContactImage,
-//                                               contactName: "Person \(i)_Z\(i)",
-//                                               contactNumber: "8870961690",
-//                                               email: "rishaban.ss@zohocorp.com",
-//                                               dateOfBirth: "2000/08/20",
-//                                               notes: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint jdbdhvwdhvbdk,.cd.dvfs avahc dolor do amet sint jdbdhvwdhvbdk,.cd.dvfs klwcjbdvsghcvjkfldkg fbd slosiougfcutgjklgfcdgxcfvjkl sdyvbksfjhgv ")
-//                                   )
-//        }
-//    }
-    
-    public static func getContactInfo(at index: Int) -> ContactInfo {
-        return datasource[index]
+    func deleteContact(at index: Int) {
+        self.contactsList.remove(at: index)
     }
     
-    public static func getTotalContacts() -> Int {
-        return datasource.count
-    }
-    
-    public static func addContactInfo(contact: ContactInfo) {
-        var contact1 = contact
-//        ContactInfoFormHandler.submit(contactInfo: contact1) { (recordId) in
-//            contact1.setRecordId(recordId)
-//            datasource.append(contact1)
-//            self.contactsDataViewDelegate?.refreshTableView()
-//        }
-    }
-    
-    public static func editContactInfo(at index: Int , contact: ContactInfo) {
-        datasource[index].contactImage = contact.contactImage
-        datasource[index].contactName = contact.contactName
-        datasource[index].contactNumber = contact.contactNumber
-        datasource[index].email = contact.email
-        datasource[index].dateOfBirth = contact.dateOfBirth
-        datasource[index].notes = contact.notes
-        
-//        ContactInfoFormHandler.editContactinfo(contactInfo: contact)
-    }
-    
-    public static func deleteContactInfo(at index: Int, recordId: String) {
-        datasource.remove(at: index)
-//        ContactInfoFormHandler.deleteContactInfos(recordIds: [recordId])
+    func clearCache() {
+        self.contactsList.removeAll()
     }
     
 }

@@ -45,7 +45,13 @@ class LargeTileContactinfoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func setCellModel(contactInfoCellModel: ContactInfoCellModel) {
+        self.contactImageView.image  = contactInfoCellModel.contactImage
+        self.contactNameLabel.text   = contactInfoCellModel.contactNameLabel
+        self.contactNumberlabel.text = contactInfoCellModel.contactNumberlabel
+    }
     
+    @available(*, deprecated, message: "use setCellModel method")
     public func setCellContext(contactImage: UIImage, contactName: String, contactNumber: String) {
         contactImageView.image = contactImage
         contactNameLabel.text = contactName

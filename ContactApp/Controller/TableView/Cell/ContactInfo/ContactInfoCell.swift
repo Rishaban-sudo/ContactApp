@@ -56,6 +56,13 @@ class ContactInfoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func setCellModel(contactInfoCellModel: ContactInfoCellModel) {
+        self.contactImageView.image  = contactInfoCellModel.contactImage
+        self.contactNameLabel.text   = contactInfoCellModel.contactNameLabel
+        self.contactNumberlabel.text = contactInfoCellModel.contactNumberlabel
+    }
+    
+    @available(*, deprecated, message: "use setCellModel method")
     public func set(contactImage: UIImage, contactNameLabel: String, contactNumberlabel: String) {
         self.contactImageView.image  = contactImage
         self.contactNameLabel.text   = contactNameLabel

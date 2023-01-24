@@ -105,7 +105,7 @@ class ContactInfoFormHandler {
         
     }
     
-    public static func submit(contactInfo: ContactInfo, completion: @escaping (String) -> Void) {  // to get recordId when submitting the form
+    public static func submit(contactInfo: ContactInfo, completion: @escaping (Bool, String) -> Void) {
         
         fetchContactInfoForm() { (status) in
             
@@ -130,16 +130,21 @@ class ContactInfoFormHandler {
                                 switch submitResponse {
                                 case .success(let successResponse):
                                     print("Form Submitted successfully !!")
+                                    
                                     dump(successResponse)
-                                    completion(successResponse.recordId!)
+                                    completion(true, "Contact Added successfully !!")
                                 case .failure(let failureResponse):
                                     print("Some error ocurred while putting data !!")
+                                    
                                     dump(failureResponse)
+                                    completion(false, failureResponse.message ?? "Some error ocurred while putting data !!")
                                 }
                                 
                             case .failure(let error):
                                 print("Error occurred while submitting form !!")
+                                
                                 dump(error)
+                                completion(false, error.localizedDescription)
                             }
                         }
                         
@@ -147,6 +152,7 @@ class ContactInfoFormHandler {
                     case .failure(let error):
                         print("Error occurred while uploading image !")
                         dump(error)
+                        completion(false, error.localizedDescription)
                     }
                 }
                 
@@ -159,7 +165,7 @@ class ContactInfoFormHandler {
         
     }
     
-    public static func editContactinfo(contactInfo: ContactInfo) {
+    public static func editContactinfo(contactInfo: ContactInfo, completion: @escaping (Bool, String) -> Void) {
         fetchContactInfoForm() { (status) in
             
             if status {
@@ -187,19 +193,27 @@ class ContactInfoFormHandler {
                                 case .success(let successResponse):
                                     print("Record updated successfully !!")
                                     dump(successResponse)
+                                    
+                                    completion(true, "Contact Edited successfully !!")
                                 case .failure(let failureResponse):
                                     print("Error occurred while updating record !!")
                                     dump(failureResponse)
+                                    
+                                    completion(false, failureResponse.message ?? "Some error occurred while updating details !")
                                 }
                             case .failure(let error):
                                 print("Error occurred while updating record !!")
                                 dump(error)
+                                
+                                completion(false, error.localizedDescription)
                             }
                         }
                         
                     case .failure(let error):
                         print("Error occurred while uploading image !")
                         dump(error)
+                        
+                        completion(false, error.localizedDescription)
                     }
                 }
                 
@@ -209,7 +223,7 @@ class ContactInfoFormHandler {
         }
     }
     
-    public static func deleteContactInfos(recordIds: [String]) {
+    public static func deleteContactInfos(recordIds: [String], completion: @escaping (Bool, String) -> Void) {
         fetchContactInfoForm { (status) in
             
             if status {
@@ -225,9 +239,13 @@ class ContactInfoFormHandler {
                     case .success(let deleteResponse):
                         print("Successfully deleted records !!")
                         dump(deleteResponse)
+                        
+                        completion(true, "Contact Deleted Successfully !!")
                     case .failure(let error):
                         print("Error occurred !!")
                         dump(error)
+                        
+                        completion(false, error.localizedDescription)
                     }
                 }
             }

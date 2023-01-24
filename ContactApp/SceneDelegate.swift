@@ -38,23 +38,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // To verify if the app is already logged in
 
+        
         ZohoAuth.getOauth2Token { [self] (token, error) in
             if token == nil {
                 ZohoAuth.presentZohoSign(in: { (token, error) in
                     dump(token)
-                    self.showInitialController()
+                    DispatchQueue.main.async {
+                        self.showInitialController()
+                    }
                 })
             }
             else {
                 print("App is already logged in")
-                self.showInitialController()
+                DispatchQueue.main.async {
+                    self.showInitialController()
+                }
             }
         }
         
         
-
-//        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-//        window?.windowScene = windowScene
         
     }
 
@@ -115,38 +117,16 @@ extension SceneDelegate {
     }
     
     func showInitialController() {
+    
+        let navController = ContactListRouter.createModule()
         
-        ContactsDataSource.fetchContactsFromZC { (isSuccess) in
-            if isSuccess {
-                let contactListTVC = ContactListTVC()
-                let navController = UINavigationController(rootViewController: contactListTVC)
-                
-                
-                if #available(iOS 13.0, *) {
-                    let appearance = UINavigationBarAppearance()
-                    appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-                    appearance.configureWithOpaqueBackground()
-                    appearance.backgroundColor = UIColor.getUIColorFromHex(rgbValue: 0x39A0FF)
-                    navController.navigationBar.standardAppearance = appearance;
-                    
-                    navController.navigationBar.scrollEdgeAppearance = navController.navigationBar.standardAppearance
-                }
-                else {
-        //            navController.navigationBar.prefersLargeTitles = true
-                    navController.navigationBar.backgroundColor = UIColor.getUIColorFromHex(rgbValue: 0x39A0FF)
-                    navController.navigationBar.barTintColor = UIColor.getUIColorFromHex(rgbValue: 0x39A0FF)
-                    navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-                }
-                
-                navController.view.addSubview(contactListTVC.getAddButton())
-                
-                navController.navigationBar.tintColor = .white
-                
-                self.window?.rootViewController = navController
-            }
-            else {
-                self.window?.rootViewController = LaunchViewController()
-            }
+        navController.customNavigationConfiguration()
+        
+        if ZohoAuth.isUserSignedIn() {
+            self.window?.rootViewController = navController
+        }
+        else {
+            self.window?.rootViewController = LaunchViewController()
         }
 
     }
@@ -158,11 +138,7 @@ extension SceneDelegate {
 extension SceneDelegate: ZCCoreFrameworkDelegate {
     
     func oAuthToken(with completion: @escaping ZCCoreFramework.AccessTokenCompletion) {
-        
-        if ZohoAuth.isUserSignedIn() {
-            print("Already signed in")
-        }
-        
+    
         ZohoAuth.getOauth2Token { (token, error) in
             if token == nil {
                 ZohoAuth.presentZohoSign(in: { (token, error) in
@@ -198,4 +174,28 @@ extension SceneDelegate {
         
     }
     
+}
+
+extension UINavigationController {
+    
+    func customNavigationConfiguration() {
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = UIColor.getUIColorFromHex(rgbValue: 0x39A0FF)
+            
+            self.navigationBar.standardAppearance = appearance;
+
+            self.navigationBar.scrollEdgeAppearance = self.navigationBar.standardAppearance
+        }
+        else {
+            self.navigationBar.backgroundColor = UIColor.getUIColorFromHex(rgbValue: 0x39A0FF)
+            self.navigationBar.barTintColor = UIColor.getUIColorFromHex(rgbValue: 0x39A0FF)
+            self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        }
+        
+        
+        self.navigationBar.tintColor = .white
+    }
 }

@@ -28,6 +28,10 @@ class DeleteContactPopVC: UIViewController {
         return cancelButton
     }
     
+    deinit {
+        print("Deinit DeleteContactPopVC")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
